@@ -788,6 +788,7 @@ ul li .dropdown-item:hover {
     background-repeat: no-repeat;
     background-position: center;
     background-color: #000000e3;
+    margin: 50px 0;
 }
 
 .content-notifications {
@@ -796,7 +797,7 @@ ul li .dropdown-item:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
 }
 
 
