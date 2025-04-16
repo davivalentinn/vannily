@@ -498,14 +498,11 @@ ul li .dropdown-item:hover {
 }
 
 /*Products-sliders*/
-.container-products{
+.products-main{
     max-width: 1600px;
     margin: 0 auto;
 }
 
-.header-products {
-    padding-block: 0 20px;
-}
 .header-products h1 {
     color: #D93CD6;
     font-size: 30px;
@@ -525,9 +522,7 @@ ul li .dropdown-item:hover {
     overflow: hidden;
 }
 
-.products-main{
-    padding-block: 100px 100px;
-}
+
 
 .slider-wrapper {
     display: flex;
@@ -906,6 +901,50 @@ ul li .dropdown-item:hover {
     color: #353535;
     font-weight: 600;
     border-radius: 5px;
+}
+
+/*============== CATEGORIA DOS PRODUTOS (GRID)*/
+
+
+.header-products-category h1 {
+    color: #D93CD6;
+    font-size: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+.product-card-category {
+    flex: 1;
+    min-width: 0; /* Importante para permitir que os cards encolham */
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.header-products-category h3 {
+    color: #A61EA4;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 30px;
+    border-bottom: 6px solid #A61EA4;
+
+}
+
+.option-category{
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background-color: #A61EA4;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 
