@@ -6,7 +6,7 @@ const products_destaque_products = [
         price: "R$ 329,99",
         originalPrice: "R$ 399,99",
         installments: "ou 6x de 54,99 sem juros",
-        image: "../assets/images/destaque-board-games/ticket-to-ride.png"
+        image: "assets/images/destaque-board-games/ticket-to-ride.png"
     },
     {
         title: "Kelp",
@@ -14,7 +14,7 @@ const products_destaque_products = [
         price: "R$ 259,90",
         originalPrice: "R$ 299,90",
         installments: "ou 5x de 51,98 sem juros",
-        image: "../assets/images/destaque-board-games/kelp.png"
+        image: "assets/images/destaque-board-games/kelp.png"
     },
     {
         title: "Coup",
@@ -22,7 +22,7 @@ const products_destaque_products = [
         price: "R$ 104,90",
         originalPrice: "R$ 129,90",
         installments: "ou 2x de 58,32 sem juros",
-        image: "../assets/images/destaque-board-games/coup.jpg"
+        image: "assets/images/destaque-board-games/coup.jpg"
     },
     {
         title: "Marvel United",
@@ -30,7 +30,7 @@ const products_destaque_products = [
         price: "R$ 289,90",
         originalPrice: "R$ 349,90",
         installments: "ou 5x de 57,98 sem juros",
-        image: "../assets/images/destaque-board-games/marvel-united.png"
+        image: "assets/images/destaque-board-games/marvel-united.png"
     }
 ];
 
