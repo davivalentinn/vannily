@@ -501,6 +501,7 @@ ul li .dropdown-item:hover {
 .products-main{
     max-width: 1600px;
     margin: 0 auto;
+    padding-block: 100px 100px;
 }
 
 .header-products h1 {
