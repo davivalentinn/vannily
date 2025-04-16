@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <title>Criar Conta - Vannily</title>
 </head>
+
 <body>
     <header class="header">
         <nav class="container-fluid">
             <div class="d-flex gap-3 justify-content-center align-items-center">
                 <div class="">
-                    <a href="index.html" class="nav-logo-img col">
+                    <a href="../../../index.html" class="nav-logo-img col">
                         <img src="assets/images/logo/logo.svg" alt="">
                     </a>
                 </div>
@@ -62,16 +64,21 @@
                         <i class="ri-heart-add-line "></i>
                     </div>
                     <div class="carrinho-menu">
-                        <i class="ri-shopping-cart-2-line"></i>
+                        <a href="../../carrinho/index.html"><i class="ri-shopping-cart-2-line"></i></a>
                     </div>
-                    <a href="#" class="button-localizar-cep">
-                        <p class=""><b>Entrar</b> ou <b>Cadastrar</b></p>
-                        <div class="circle-cep">
-                            <i class="ri-user-line"></i>
+
+                    <div href="#" class="button-account-user">
+                        <div class="">
+                            <a href="index.html">Registrar</a> ou
+                            <a href="">Entrar</a>
                         </div>
-                    </a>
+                        <div class="circle-cep">
+                            <i class="ri-user-3-line"></i>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
 
@@ -143,7 +150,64 @@
         </div>
     </div>
 
+    <main>
+        <section class="container-register container-page">
+            <div class="register-title">
+                <h1>Criar Conta</h1>
+                <span>*Campos obrigatórios</span>
+            </div>
+
+            <div class="content">
+                <form action="" class="form-register" id="form-register">
+                    <div class="row row-cols-1">
+                        <div class="col mt-3 w-50">
+                            <div class="title-campo">
+                                <h2>Informaçãoes Pessoais</h2>
+                            </div>
+                        </div>
+
+                        <div class="col mt-3">
+                            <input type="text" name="nome" placeholder="*Nome" required>
+                        </div>
+                        <div class="col mt-3">
+                            <input type="text" name="sobrenome" placeholder="*Sobrenome" required>
+                        </div>
+                        <div class="col mt-3">
+                            <input type="number" name="numero" placeholder="*DDD e Número de celular" required>
+                        </div>
+
+                    </div>
+                    <div class="row row-cols-1">
+                        <div class="col mt-3">
+                            <div class="title-campo">
+                                <h2>Sobre sua Conta</h2>
+                            </div>
+                        </div>
+
+                        <div class="col mt-3">
+                            <input type="email" name="email" placeholder="Seu email">
+                        </div>
+                        <div class="col mt-3">
+                            <input type="text" name="usuario" placeholder="Crie um usuario">
+                        </div>
+                        <div class="col mt-3">
+                            <input type="password" name="senha" placeholder="Crie uma senha">
+                        </div>
+
+
+                    </div>
+
+                    <div class="register-details">
+                          
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

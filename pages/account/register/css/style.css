@@ -36,8 +36,9 @@ li {
 }
 
 .container-page {
-    max-width: 1770px;
+    max-width: 1600px;
     margin: 0 auto;
+    padding-block: 100px 100px;
 }
 
 .content-menu {
@@ -201,7 +202,32 @@ li {
     ;
 
 }
+.button-account-user{
+    background-color: #8B1689;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 240px;
+    height: 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: .1s;
+}
 
+.button-account-user div a {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.button-account-user a:hover{
+    color: #ffffffe3;
+}
+
+.button-account-user div {
+    color: #ffffff;
+    
+}
 /*subMenu*/
 .sub-menu {
     background-color: #8B1689;
@@ -234,3 +260,6 @@ ul li .dropdown-item:hover {
 .dropdown-menu {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
+
+/**/

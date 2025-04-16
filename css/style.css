@@ -202,6 +202,33 @@ li {
 
 }
 
+.button-account-user{
+    background-color: #8B1689;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 240px;
+    height: 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: .1s;
+}
+
+.button-account-user div a {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.button-account-user a:hover{
+    color: #ffffffe3;
+}
+
+.button-account-user div {
+    color: #ffffff;
+    
+}
+
 /*subMenu*/
 .sub-menu {
     background-color: #8B1689;
