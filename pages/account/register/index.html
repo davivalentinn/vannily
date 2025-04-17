@@ -159,47 +159,80 @@
 
             <div class="content">
                 <form action="" class="form-register" id="form-register">
-                    <div class="row row-cols-1">
-                        <div class="col mt-3 w-50">
-                            <div class="title-campo">
-                                <h2>Informaçãoes Pessoais</h2>
+                    <div class="d-flex justify-content-center align-items-center gap-5">
+                        <div class="">
+                            <div class="d-flex flex-column">
+                                <div class="mt-3">
+                                    <div class="title-campo">
+                                        <h2>Informaçãoes Pessoais</h2>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    <input type="text" name="nome" placeholder="*Nome" required>
+                                </div>
+                                <div class="mt-3">
+                                    <input type="text" name="sobrenome" placeholder="*Sobrenome" required>
+                                </div>
+                                <div class="mt-3">
+                                    <input type="number" name="numero" placeholder="*DDD e Número de celular" required>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="col mt-3">
-                            <input type="text" name="nome" placeholder="*Nome" required>
-                        </div>
-                        <div class="col mt-3">
-                            <input type="text" name="sobrenome" placeholder="*Sobrenome" required>
-                        </div>
-                        <div class="col mt-3">
-                            <input type="number" name="numero" placeholder="*DDD e Número de celular" required>
-                        </div>
+                        <div class="">
+                            <div class="d-flex flex-column">
+                                <div class="mt-3">
+                                    <div class="title-campo">
+                                        <h2>Sobre sua Conta</h2>
+                                    </div>
+                                </div>
 
-                    </div>
-                    <div class="row row-cols-1">
-                        <div class="col mt-3">
-                            <div class="title-campo">
-                                <h2>Sobre sua Conta</h2>
+                                <div class="mt-3">
+                                    <input type="email" name="email" placeholder="Seu email">
+                                </div>
+                                <div class="mt-3">
+                                    <input type="text" name="usuario" placeholder="Crie um usuario">
+                                </div>
+                                <div class="mt-3">
+                                    <input type="password" name="senha" placeholder="Crie uma senha">
+                                </div>
+
+
                             </div>
                         </div>
-
-                        <div class="col mt-3">
-                            <input type="email" name="email" placeholder="Seu email">
-                        </div>
-                        <div class="col mt-3">
-                            <input type="text" name="usuario" placeholder="Crie um usuario">
-                        </div>
-                        <div class="col mt-3">
-                            <input type="password" name="senha" placeholder="Crie uma senha">
-                        </div>
-
-
                     </div>
 
-                    <div class="register-details">
-                          
+
+
+                    <div class="register-details d-flex flex-column justify-content-center">
+                        <div class="oferts-new mt-3">
+                            <div class=""> <input type="checkbox" class="selecionar-produto" checked>
+                            </div>
+                            <div class="">
+                                <p>
+                                    Quero receber <b>ofertas</b> e <b>novidades</b> da loja Vinnaly
+                                    por <b>e-mail</b>
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="line-dividir"></div>
+                        <div class="oferts-new">
+                            <p>Concordo com o uso dos meus dados para compra e experiência no site conforme a
+                                <b>
+                                    Política
+                                    de privacidade
+                                </b>
+                            </p>
+                        </div>
+                        <div class="button-register d-flex justify-content-center">
+                            <input type="submit" value="Criar Conta">
+                        </div>
                     </div>
+
+
                 </form>
             </div>
         </section>

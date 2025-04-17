@@ -925,7 +925,7 @@ ul li .dropdown-item:hover {
     width: 100%;
     padding: 10px 10px;
     border: none;
-
+    outline: none;
     color: #353535;
     font-weight: 600;
     border-radius: 5px;

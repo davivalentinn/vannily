@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #ffffff;
 }
 
@@ -202,7 +202,8 @@ li {
     ;
 
 }
-.button-account-user{
+
+.button-account-user {
     background-color: #8B1689;
     display: flex;
     justify-content: center;
@@ -220,14 +221,15 @@ li {
     font-weight: 600;
 }
 
-.button-account-user a:hover{
+.button-account-user a:hover {
     color: #ffffffe3;
 }
 
 .button-account-user div {
     color: #ffffff;
-    
+
 }
+
 /*subMenu*/
 .sub-menu {
     background-color: #8B1689;
@@ -262,4 +264,115 @@ ul li .dropdown-item:hover {
 }
 
 
-/**/
+/*Criar Conta*/
+
+.container-register {
+    border: 5px solid #CA2BC7;
+    margin-top: 100px;
+
+}
+
+.register-title {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: -120px;
+}
+
+.register-title h1 {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 800;
+    background-color: #ffffff;
+    width: 250px;
+    text-align: center;
+
+}
+
+.register-title span {
+    padding: 0 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-block: 50px 30px;
+}
+
+
+.title-campo h2 {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px 20px;
+    color: #1f1f1f;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid #000000;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+}
+
+.register-details{
+   
+}
+
+.oferts-new{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+}
+
+.oferts-new p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+.selecionar-produto {
+    appearance: none;
+    /* remove o estilo padrão */
+    
+    min-width: 21px;
+    height: 20px;
+    border: 2px solid #8B1689;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.selecionar-produto:checked {
+    background-color: #8B1689;
+}
+
+.selecionar-produto:checked::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid #ffffff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
