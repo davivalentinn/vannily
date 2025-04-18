@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <title>Criar Conta - Vannily</title>
 </head>
@@ -158,7 +160,7 @@
             </div>
 
             <div class="content">
-                <form action="" class="form-register" id="form-register">
+                <form action="../../../backend/account/register.php" class="form-register" id="form-register">
                     <div class="d-flex justify-content-center container-information">
                         <div class="">
                             <div class="d-flex flex-column oferts-new">
@@ -169,11 +171,13 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <input type="text" class="input-register" name="nome" placeholder="*Nome Completo" required>
+                                    <input type="text" class="input-register" name="nome" placeholder="*Nome Completo"
+                                        required>
                                 </div>
-                               
+
                                 <div class="mt-3">
-                                    <input type="number" class="input-register" name="numero" placeholder="*DDD e Número de celular" required>
+                                    <input type="number" class="input-register" name="numero"
+                                        placeholder="*DDD e Número de celular" required>
                                 </div>
 
                                 <div class="oferts-new mt-4">
@@ -185,9 +189,9 @@
                                             por <b>e-mail</b>
                                         </p>
                                     </div>
-        
+
                                 </div>
-                        
+
                                 <div class="oferts-new">
                                     <div class=""> <input type="checkbox" class="selecionar-produto" checked>
                                     </div>
@@ -214,23 +218,61 @@
                                     <input type="email" class="input-register" name="email" placeholder="Seu email">
                                 </div>
                                 <div class="mt-3">
-                                    <input type="text" class="input-register" name="usuario" placeholder="Crie um usuario">
+                                    <input type="text" class="input-register" name="usuario"
+                                        placeholder="Crie um usuario">
                                 </div>
                                 <div class="mt-3">
-                                    <input type="password" class="input-register" name="senha" placeholder="Crie uma senha">
+                                    <input type="password" class="input-register" name="senha"
+                                        placeholder="Crie uma senha">
+                                        <i class="ri-eye-line eye-icon" id="toggleEye" onclick="mostrarSenha()"></i>
+
                                 </div>
                                 <div class="mt-3">
-                                    <input type="password" class="input-register" name="senhaTwo" placeholder="Confirmar senha">
-                                </div>
+                                    <input type="password" class="input-register" name="senha-confirm"
+                                        placeholder="Confirmar senha">
+                                        <i class="ri-eye-line eye-icon" id="toggleEyeConfirm" onclick="mostrarSenhaConfirm()"></i>
+
+                                    <i id="toggleEyeConfirm" class="fas fa-eye eye-icon"
+                                        onclick="mostrarSenhaConfirm()"></i>
+                                    <span class="nao-enviado" id="nao-enviado-form">As senhas não coincidem! Tente
+                                        novamente.</span>
+                                        </div>
+                                    <style>
+                                        .nao-enviado {
+                                            font-size: 15px;
+                                            font-family: "poppins", sans-serif;
+                                            font-weight: 300;
+                                            padding: 10px;
+                                            display: none;
+
+                                            margin: 10px 0;
+
+                                            transition: .3s;
+
+                                            background-color: #FFCACA;
+                                            border: 2px #a60202 solid;
+                                            color: red;
+                                            border-radius: 5px;
+                                        }
+                                            .eye-icon {
+                                                
+                                            }
+
+                                            #toggleEyeConfirm {
+                                                
+                                            }
+                                        
+                                    </style>
+                               
 
 
                             </div>
                         </div>
                     </div>
                     <div class="register-details d-flex flex-column justify-content-center">
-                        
+
                         <div class="d-flex justify-content-center">
-                            <input type="submit" class="button-register" value="Criar Conta">
+                            <input type="submit" class="button-register" value="Criar Conta" onclick="validar()">
                         </div>
                     </div>
                 </form>
