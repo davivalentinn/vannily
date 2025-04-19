@@ -1,5 +1,5 @@
 <?php
-$email_usuario = $_POST['email_usuario'] ?? '';
+$email_ou_usuario = $_POST['email_usuario'] ?? '';
 $senha = $_POST['senha'] ?? '';
 
 try {
@@ -7,7 +7,7 @@ try {
 
     $sql = "SELECT * FROM usuario WHERE email = :valor OR usuario = :valor";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':valor', $email_usuario);
+    $stmt->bindParam(':valor', $email_ou_usuario);
     $stmt->execute();
 
     $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
