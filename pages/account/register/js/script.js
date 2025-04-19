@@ -1,4 +1,3 @@
-
 function validar() {
     let senha = document.getElementById("senha").value;
     let confirmSenha = document.getElementById("senha-confirm").value;
@@ -45,3 +44,69 @@ function validar() {
         eyeIcon.classList.add("ri-eye-line"); // Muda para ícone de olho aberto
     }
   }
+
+  
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('cadastroForm');
+    const emailErro = document.getElementById('email-erro');
+    const successModal = document.getElementById('success-modal');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validação das senhas antes do envio
+        const senha = document.getElementById('senha').value;
+        const senhaConfirm = document.getElementById('senha-confirm').value;
+        const mensagemSenha = document.getElementById('nao-enviado-form');
+        
+        if (senha !== senhaConfirm) {
+            mensagemSenha.style.display = 'block';
+            return;
+        }
+        mensagemSenha.style.display = 'none';
+        
+        const formData = new FormData(form);
+        
+        fetch('../../../backend/account/register.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            try {
+                const result = JSON.parse(data);
+                
+                if (result.sucesso) {
+                    emailErro.style.display = 'none';
+                    form.reset();
+                    // Mostra o modal de sucesso
+                    successModal.style.display = 'flex';
+                    setTimeout(() => {
+                        successModal.classList.add('show');
+                    }, 10);
+                } else {
+                    emailErro.textContent = result.erro;
+                    emailErro.style.display = 'block';
+                }
+            } catch (e) {
+                console.error('Erro ao processar resposta:', e);
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+            emailErro.textContent = 'Erro de conexão. Tente novamente.';
+            emailErro.style.display = 'block';
+        });
+    });
+  });
+  
+  function closeModal() {
+    const successModal = document.getElementById('success-modal');
+    successModal.classList.remove('show');
+    setTimeout(() => {
+        successModal.style.display = 'none';
+        // Redireciona para a página de login
+        window.location.href = '../login/index.php'; // Altere para o caminho correto da sua página de login
+    }, 300);
+  }
+  

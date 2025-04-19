@@ -160,7 +160,9 @@
             </div>
 
             <div class="content">
-                <form action="../../../backend/account/register.php" class="form-register" id="form-register">
+                <form onsubmit="return validar()" id="cadastroForm" onsubmit="return validarSenhas()"
+                    action="../../../backend/account/register.php" method="post" class="form-register"
+                    id="form-register">
                     <div class="d-flex justify-content-center container-information">
                         <div class="">
                             <div class="d-flex flex-column oferts-new">
@@ -170,14 +172,15 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-3">
-                                    <input type="text" class="input-register" name="nome" placeholder="*Nome Completo"
-                                        required>
+                                <div class="box-details">
+                                    <input type="text" class="input-register" name="nome" required>
+                                    <label for="nome">*Nome completo</label>
                                 </div>
 
-                                <div class="mt-3">
-                                    <input type="number" class="input-register" name="numero"
-                                        placeholder="*DDD e Número de celular" required>
+                                <div class="box-details">
+                                    <input type="number" class="input-register" name="numero" required>
+                                    <label for="numero">*DDD e número de celular</label>
+
                                 </div>
 
                                 <div class="oferts-new mt-4">
@@ -214,56 +217,41 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-3">
-                                    <input type="email" class="input-register" name="email" placeholder="Seu email">
-                                </div>
-                                <div class="mt-3">
-                                    <input type="text" class="input-register" name="usuario"
-                                        placeholder="Crie um usuario">
-                                </div>
-                                <div class="mt-3">
-                                    <input type="password" class="input-register" name="senha"
-                                        placeholder="Crie uma senha">
-                                        <i class="ri-eye-line eye-icon" id="toggleEye" onclick="mostrarSenha()"></i>
 
+                                <div class="box-details">
+                                    <input type="email" class="input-register" name="email" required>
+                                    <label for="email">*Seu email</label>
                                 </div>
-                                <div class="mt-3">
+                                <div class="box-details">
+                                    <input type="text" class="input-register" name="usuario" required>
+                                    <label for="email">*Crie um usuario</label>
+                                </div>
+
+
+                                <div class="box-details">
+                                    <input type="password" class="input-register" name="senha" id="senha" required>
+                                    <label for="senha">Crie uma senha</label>
+                                    <i class="ri-eye-line eye-icon" id="toggleEye" onclick="mostrarSenha()"></i>
+                                </div>
+                                <div class="box-details">
                                     <input type="password" class="input-register" name="senha-confirm"
-                                        placeholder="Confirmar senha">
-                                        <i class="ri-eye-line eye-icon" id="toggleEyeConfirm" onclick="mostrarSenhaConfirm()"></i>
-
-                                    <i id="toggleEyeConfirm" class="fas fa-eye eye-icon"
+                                        id="senha-confirm" required>
+                                    <label for="senha">Confirmar senha</label>
+                                    <i class="ri-eye-line eye-icon" id="toggleEyeConfirm"
                                         onclick="mostrarSenhaConfirm()"></i>
+
+                                    <div class="msg-alertas">
+
+                                        <span class="ms erro" id="email-erro" style="display: none;"><i
+                                                class="ri-error-warning-line"></i></span>
+                                    </div>
                                     <span class="nao-enviado" id="nao-enviado-form">As senhas não coincidem! Tente
                                         novamente.</span>
-                                        </div>
-                                    <style>
-                                        .nao-enviado {
-                                            font-size: 15px;
-                                            font-family: "poppins", sans-serif;
-                                            font-weight: 300;
-                                            padding: 10px;
-                                            display: none;
+                                </div>
+                                <style>
 
-                                            margin: 10px 0;
+                                </style>
 
-                                            transition: .3s;
-
-                                            background-color: #FFCACA;
-                                            border: 2px #a60202 solid;
-                                            color: red;
-                                            border-radius: 5px;
-                                        }
-                                            .eye-icon {
-                                                
-                                            }
-
-                                            #toggleEyeConfirm {
-                                                
-                                            }
-                                        
-                                    </style>
-                               
 
 
                             </div>
@@ -280,7 +268,107 @@
         </section>
     </main>
 
+    <!-- 
+    <!-- Adicione este HTML no final do seu body, antes de fechar a tag </body> -->
+    <div id="success-modal" class="success-modal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h2>Cadastro Realizado com Sucesso!</h2>
+            <p>Seja bem-vindo(a) à nossa plataforma!</p>
+            <button onclick="closeModal()" class="modal-button">Continuar</button>
+        </div>
+    </div>
 
+    <style>
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .success-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(0.7);
+            transition: transform 0.3s;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .success-modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 40px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .modal-content h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .modal-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .modal-button:hover {
+            background: #45a049;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>

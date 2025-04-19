@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <title>Entrar na minha conta - Vannily</title>
 </head>
@@ -157,7 +158,8 @@
             </div>
 
             <div class="content">
-                <form action="" class="form-register" id="form-register">
+                <form onsubmit="return validar()" onsubmit="return validarSenhas()"
+                    action="../../../backend/account/login.php" method="post" class="form-register" id="form-register">
                     <div class="d-flex justify-content-center align-items-center container-information">
 
                         <div class="">
@@ -169,14 +171,26 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between gap-3">
-                                    <div class="mt-3">
-                                        <input type="text" class="input-register" name="email"
-                                            placeholder="Usuario ou Email">
+                                    <div class="input-span">
+                                        <div class="box-details">
+                                            <input type="text" class="input-register" name="email_usuario" required>
+                                            <label for="email_usuario">Usuario ou Email</label>
+                                        </div>
                                     </div>
-                                    <div class="mt-3">
-                                        <input type="password" class="input-register" name="usuario"
-                                            placeholder="*Senha">
+
+                                    <div class="input-span">
+                                        <div class="box-details">
+                                            <input type="password" class="input-register" name="senha" required
+                                                id="senha">
+                                            <label for="senha">Digite sua senha</label>
+                                            <i class="ri-eye-line eye-icon" id="toggleEye" onclick="mostrarSenha()"></i>
+                                        </div>
+                                        <span class="nao-enviado" id="nao-enviado-form">As senhas não coincidem!
+                                            Tente
+                                            novamente.</span>
                                     </div>
+
+
                                 </div>
 
                             </div>
@@ -196,6 +210,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+
 </body>
 
 </html>

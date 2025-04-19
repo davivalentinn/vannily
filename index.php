@@ -70,7 +70,7 @@
                    
                     <div href="#" class="button-account-user">
                         <div class="">
-                            <a href="pages/account/register/index.html">Registrar</a> ou 
+                            <a href="pages/account/register/index.php">Registrar</a> ou 
                             <a href="">Entrar</a>
                         </div>
                         <div class="circle-cep">

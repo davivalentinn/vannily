@@ -66,7 +66,7 @@ li {
 
 }
 
-.content{
+.content {
     margin-top: 50px;
 }
 
@@ -320,32 +320,29 @@ input[type=number]::-webkit-inner-spin-button {
     outline: none;
     border-radius: 2px;
     width: 100%;
-    border: 2px solid 
-    #00000085;
+    border: 2px solid #00000085;
     box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
 }
 
-.register-details{
-   
-}
+.register-details {}
 
-.oferts-new{
+.oferts-new {
     display: flex;
     justify-content: center;
     gap: 10px;
-    width:400px;
-    
+    width: 400px;
+
 }
 
 .oferts-new p {
     font-size: 14px;
     font-weight: 500;
-   
+
     text-align: justify;
     line-height: 20px;
 }
 
-.container-information{
+.container-information {
     gap: 5rem;
 }
 
@@ -354,7 +351,7 @@ input[type=number]::-webkit-inner-spin-button {
 .selecionar-produto {
     appearance: none;
     /* remove o estilo padrão */
-    
+
     min-width: 21px;
     height: 20px;
     border: 2px solid #8B1689;
@@ -382,7 +379,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 
-.button-register{
+.button-register {
     border: none;
     outline: none;
     background-color: #CA2BC7;
@@ -397,6 +394,69 @@ input[type=number]::-webkit-inner-spin-button {
     letter-spacing: 1px;
 }
 
-.button-register:hover{
+.button-register:hover {
     background-color: #ca2bc7ed;
+}
+
+
+.nao-enviado {
+    font-size: 15px;
+    font-family: "poppins", sans-serif;
+    font-weight: 300;
+    padding: 10px;
+    display: none;
+    width: 100%;
+    margin-right: 10px;
+   
+    transition: .3s;
+
+    background-color: #FFCACA;
+    border: 2px #a60202 solid;
+    color: red;
+    border-radius: 5px;
+}
+
+.eye-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 18px;
+}
+
+.input-wrapper {
+    position: relative;
+
+}
+
+
+.box-details {
+    position: relative;
+
+    margin: 5px 20px;
+}
+
+.box-details label {
+
+    padding: 0 5px;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 1em;
+    color: var(--title-color);
+    pointer-events: none;
+    transition: .3s;
+    font-size: 16px;
+    font-family: "poppins", sans-serif;
+    font-weight: 400;
+}
+
+
+
+
+.box-details input:focus~label,
+.box-details input:valid~label {
+    top: 0;
+    background-color: #ffffff;
+    font-size: 0.9rem;
 }

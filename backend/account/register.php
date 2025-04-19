@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
     $numero = $_POST['numero'] ?? '';
     $email = $_POST['email'] ?? '';
+    $usuario = $_POST['usuario'] ?? '';
     $senha = $_POST['senha'] ?? '';
 
     try {
@@ -39,11 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Se não houver erros, insere no banco
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuario (nomeCompleto, nomeExibicao, email, senha) VALUES (:nomeCompleto, :nomeExibicao, :email, :senha)";
+        $sql = "INSERT INTO usuario (nome, numero_telefone, email, usuario, senha) VALUES (:nome, :numero_telefone, :email, :usuario, :senha)";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nomeCompleto', $nome);
-        $stmt->bindParam(':nomeExibicao', $nomeExibicao);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':numero_telefone', $numero);
         $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':usuario', $usuario);
         $stmt->bindParam(':senha', $senha_hash);
         $stmt->execute();
 
@@ -56,4 +58,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Retorna a resposta em formato JSON
 echo json_encode($response);
+
 ?>
