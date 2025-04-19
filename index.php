@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
 $usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
 $email_usuario = isset($_SESSION['email_usuario']) ? $_SESSION['email_usuario'] : null;
@@ -90,7 +91,7 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                                         <i class="ri-user-line"></i>
 
 
-                                        <h3>Bem vindo</h3>
+                                        <h3>Bem vindo <?= $_SESSION['nome_completo_usuario'] ?></h3>
                                     </div>
                                     <hr>
 
@@ -239,8 +240,11 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                         <!-- Senao tiver uma sessao de usuario, oculta estas propriedades -->
                         <?php
                         if (!isset($_SESSION['id_usuario'])): ?>
-                            <a href="pages/account/register/index.php">Registrar</a> ou
-                            <a href="">Entrar</a>
+                        <div>
+                        <a href="pages/account/register/index.php">Registrar</a> ou
+                        <a href="pages/account/login/index.php">Entrar</a>
+                        </div>
+                            
 
                         <?php endif; ?>
 
