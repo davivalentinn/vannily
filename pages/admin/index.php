@@ -1,3 +1,10 @@
+<?php 
+require_once("../../backend/verifyAdmin.php");
+
+// Garante que só admin acesse
+verificaTipo('admin');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
