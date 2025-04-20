@@ -71,7 +71,7 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                         </div>
                     </form>
                 </div>
-                <div class="icones-menu text-center">
+                <div class="icones-menu">
                     <div class="favoritos-menu">
                         <i class="ri-heart-add-line "></i>
                     </div>
@@ -79,11 +79,23 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                         <a href="pages/carrinho/index.html"><i class="ri-shopping-cart-2-line"></i></a>
                     </div>
 
-                    <div href="#" class="button-account-user">
 
 
-                        <!-- Se tiver uma sessao de usuario, aparecera estas propriedades -->
-                        <?php if (isset($_SESSION['id_usuario'])): ?>
+
+                    <!-- Se tiver uma sessao de usuario, aparecera estas propriedades -->
+                    <?php if (isset($_SESSION['id_usuario'])): ?>
+                        <div href="#" class="button-account-user">
+                            <div class="dados-usuario-session">
+                                <p>Olá, <span><?= $_SESSION['usuario'] ?></span></p>
+                            </div>
+
+                            <div class="circle-cep">
+                                <a href="#" class="header__action-btn">
+
+                                    <i class="ri-user-3-line" onclick="toggleMenuUser()"></i>
+                                </a>
+                            </div>
+
                             <div class="sub-menu-wrap" id="subMenuUser">
                                 <div class="sub-menu-user">
                                     <div class="user-info">
@@ -91,174 +103,176 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                                         <i class="ri-user-line"></i>
 
 
-                                        <h3>Bem vindo <?= $_SESSION['nome_completo_usuario'] ?></h3>
+                                        <h3>Bem vindo <span><?= $_SESSION['nome_completo_usuario'] ?></span></h3>
+
                                     </div>
                                     <hr>
 
-                                    <?php
-                                    if (!isset($_SESSION['email_usuario'])): ?>
-                                        <a href="pages/cadastro/index.php" class="sub-menu-link">
-                                            <i class="ri-user-add-line"></i>
-                                            <p>Criar Conta</p><span>></span>
+                                    <?php if (isset($_SESSION['email_usuario'])): ?>
+                                        <a href='pages/perfil/index.php' class='sub-menu-link'>
+                                            <i class='ri-user-settings-line'></i>
+                                            <p>Meu perfil</p>
+                                            <span><i class="ri-arrow-right-s-line"></i></span>
                                         </a>
-                                        <a href="pages/login/index.php" class="sub-menu-link">
-                                            <i class="ri-user-line"></i></i>
-                                            <p>Entrar</p><span>></span>
-                                        </a>
-
                                     <?php endif; ?>
 
                                     <?php
-                                    if (isset($_SESSION['email_usuario'])) {
-                                        echo "<a href='pages/perfil/index.php' class='sub-menu-link'>
-                        <i class='ri-user-settings-line'></i></i><p>Meu perfil</p><span>></span>
-                        </a>";
-                                    }
-                                    ?>
-
-                                    <?php
                                     if (isset($_SESSION['email_usuario'])): ?>
-                                        <a href="php/logout.php" class="sub-menu-link">
+                                        <a href="backend/account/logout.php" class="sub-menu-link">
                                             <i class="ri-logout-box-r-line" class="icone-logout"></i>
-                                            <p>Sair da Conta</p><span>></span>
+                                            <p>Sair da Conta</p>
+                                            <span><i class="ri-arrow-right-s-line"></i></span>
                                         </a>
 
                                     <?php endif; ?>
 
                                 </div>
+
                             </div>
-                            <div class="dados-usuario-session">
-                                <p>Olá, <span><?= $_SESSION['usuario'] ?></span></p>
-                            </div>
-                            <style>
-                                .dados-usuario-session p {
-                                    margin: 0 auto;
-                                }
-
-                                .dados-usuario-session span {
-                                    font-weight: 700;
-                                }
-
-
-                                /*MENU DROPDOWN USUARIO*/
-                                .sub-menu-wrap {
-                                    position: absolute;
-                                    top: 100%;
-                                    right: 15.5%;
-                                    width: 320px;
-
-                                    max-height: 0px;
-                                    overflow: hidden;
-                                    transition: max-height 0.5s;
-                                }
-
-                                .sub-menu-wrap.open-menu {
-                                    max-height: 400px;
-                                    transition: all 0.2s var(--transition);
-                                }
-
-                                .sub-menu-user {
-                                    background-color: black;
-                                    border: 2px solid var(--border-color);
-                                    padding: 20px;
-                                    margin: 10px;
-                                }
-
-                                .sub-menu-link-user {
-                                    text-decoration: none;
-                                    color: var(--second--color);
-                                    font-weight: 600;
-                                }
-
-                                .user-info h3 span {
-                                    font-weight: 600;
-                                }
-
-
-                                .user-info {
-                                    display: flex;
-                                    align-items: center;
-                                }
-
-                                .user-info h3 {
-                                    font-size: 15px;
-                                    font-weight: 300;
-                                }
-
-                                .user-info i {
-                                    font-size: 20px;
-                                    margin-right: 15px;
-                                }
-
-                                .sub-menu hr {
-                                    border: 0;
-                                    height: 1px;
-                                    width: 100%;
-                                    margin: 15px 0 10px;
-                                    background-color: #ccc;
-                                }
-
-                                .sub-menu-link {
-                                    display: flex;
-                                    align-items: center;
-                                    text-decoration: none;
-                                    color: var(--second--color);
-                                    margin: 12px 0;
-                                }
-
-                                .sub-menu-link:hover p {
-                                    font-weight: 600;
-                                }
-
-                                .sub-menu-link p {
-                                    width: 100%;
-                                }
-
-                                .sub-menu-link span {
-                                    font-size: 20px;
-                                    transition: transform 0.5s;
-                                }
-
-                                .sub-menu-link:hover span {
-                                    transform: translateX(5px);
-                                }
-
-
-
-                                .sub-menu-link i {
-                                    font-size: 20px;
-                                    padding: 8px;
-                                    margin-right: 15px;
-
-                                    color: var(--text-color);
-                                }
-                            </style>
-
-                        <?php endif; ?>
-
-
-                        <!-- Senao tiver uma sessao de usuario, oculta estas propriedades -->
-                        <?php
-                        if (!isset($_SESSION['id_usuario'])): ?>
-                        <div>
-                        <a href="pages/account/register/index.php">Registrar</a> ou
-                        <a href="pages/account/login/index.php">Entrar</a>
                         </div>
-                            
+                    </div>
 
-                        <?php endif; ?>
 
+
+                    <style>
+                        .dados-usuario-session p {
+                            margin: 0 auto;
+                        }
+
+                        .dados-usuario-session span {
+                            font-weight: 700;
+                        }
+
+
+                        /*MENU DROPDOWN USUARIO*/
+                        .sub-menu-wrap {
+                            position: absolute;
+                            top: 10%;
+                            right: 25px;
+                            width: 320px;
+                            z-index: 1000;
+                            max-height: 0px;
+                            overflow: hidden;
+                            transition: max-height 0.5s;
+
+                        }
+
+                        .sub-menu-wrap.open-menu {
+                            max-height: 400px;
+                            transition: all 0.2s var(--transition);
+                        }
+
+                        .sub-menu-user {
+                            background-color: #8B1689;
+                            border: 2px solid #353535;
+                            padding: 20px;
+                            margin: 10px;
+                            border-radius: 5px;
+                            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+                        }
+
+                        .sub-menu-link-user {
+                            text-decoration: none;
+                            color: #ffffff;
+                            font-weight: 600;
+                        }
+
+                        .user-info h3 span {
+                            font-weight: 600;
+                        }
+
+
+                        .user-info {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .user-info h3 {
+                            font-size: 15px;
+                            font-weight: 300;
+                        }
+
+                        .user-info i {
+                            font-size: 20px;
+                            margin-right: 15px;
+                        }
+
+                        .sub-menu hr {
+                            border: 0;
+                            height: 1px;
+                            width: 100%;
+                            margin: 15px 0 10px;
+                            background-color: #353535;
+                        }
+
+                        .sub-menu-link {
+                            display: flex;
+                            align-items: center;
+                            text-decoration: none;
+                            color: var(--second--color);
+
+                        }
+
+                        .sub-menu-link:hover p {
+                            font-weight: 600;
+                        }
+
+                        .sub-menu-link p {
+                            width: 100%;
+                            margin: 0 auto;
+                        }
+
+                        .sub-menu-link span {
+                            font-size: 20px;
+                            transition: transform 0.5s;
+                        }
+
+                        .sub-menu-link:hover span {
+                            transform: translateX(5px);
+                        }
+
+
+
+                        .sub-menu-link i {
+                            font-size: 20px;
+                            padding: 8px;
+                            margin-right: 15px;
+
+                            color: var(--text-color);
+                        }
+                    </style>
+
+                <?php endif; ?>
+
+
+                <!-- Senao tiver uma sessao de usuario, oculta estas propriedades -->
+                <?php
+                if (!isset($_SESSION['id_usuario'])): ?>
+                    <div class="button-account-user">
+                        <div>
+                            <a href="pages/account/register/index.php">Registrar</a> ou
+                            <a href="pages/account/login/index.php">Entrar</a>
+                        </div>
 
                         <div class="circle-cep">
-                            <a href="#" class="header__action-btn">
+                            <a href="#" class="">
 
-                                <i class="ri-user-3-line" onclick="toggleMenuUser()"></i>
+                                <i class="ri-user-3-line"></i>
                             </a>
                         </div>
 
-
-
                     </div>
+
+
+
+                <?php endif; ?>
+            </div>
+
+
+
+
+
+
         </nav>
     </header>
 
