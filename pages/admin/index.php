@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../../backend/verifyAdmin.php");
 
 // Garante que só admin acesse
@@ -7,217 +7,108 @@ verificaTipo('admin');
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Dashboard de Produtos</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        input[type="text"],
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-        
-        .btn:hover {
-            background-color: #45a049;
-        }
-        
-        .btn-danger {
-            background-color: #f44336;
-        }
-        
-        .btn-danger:hover {
-            background-color: #d32f2f;
-        }
-        
-        .btn-secondary {
-            background-color: #2196F3;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #0b7dda;
-        }
-        
-        .product-list {
-            margin-top: 30px;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .actions {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .category-fields {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 4px;
-        }
-    </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Dashboard de Produtos</h1>
-        
-        <form id="productForm">
+
+        <form action="../../backend/products/add_product.php" id="productForm" method="post"
+            enctype="multipart/form-data">
             <input type="hidden" id="productId">
-            
+
             <div class="form-group">
                 <label for="productName">Nome do Produto</label>
-                <input type="text" id="productName" required>
+                <input type="text" id="productName" name="nome_produto" required>
             </div>
-            
+
+            <div class="form-group">
+                <label for="productImage">Imagem do Produto</label>
+                <input type="file" id="productImage" name="imagem_produto" accept="image/*" required>
+            </div>
+
+
             <div class="form-group">
                 <label for="productPrice">Preço (R$)</label>
-                <input type="number" id="productPrice" min="0" step="0.01" required>
+                <input type="number" id="productPrice" name="preco_produto" min="0" step="0.01" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="productCategory">Categoria</label>
-                <select id="productCategory" required>
+                <select id="productCategory" name="categoria_produto" required>
                     <option value="">Selecione uma categoria</option>
                     <option value="jogos">Jogos</option>
                     <option value="roupas">Roupas</option>
                 </select>
             </div>
-            
+
             <div id="jogosFields" class="category-fields hidden">
                 <div class="form-group">
                     <label for="gameType">Tipo de Jogo</label>
-                    <select id="gameType">
+                    <select id="gameType" name="tipo_jogo">
                         <option value="tabuleiro">Tabuleiro</option>
                         <option value="cartas">Cartas</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="players">Número de Jogadores</label>
-                    <input type="text" id="players" placeholder="Ex: 2-4">
+                    <input type="text" id="players" name="numero_jogadores" placeholder="Ex: 2-4">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="gameTime">Tempo de Jogo (minutos)</label>
-                    <input type="number" id="gameTime" min="1">
+                    <input type="number" name="tempo_jogo" id="gameTime" min="1">
                 </div>
             </div>
-            
+
             <div id="roupasFields" class="category-fields hidden">
                 <div class="form-group">
                     <label for="clothingType">Tipo de Roupa</label>
-                    <select id="clothingType">
+                    <select id="clothingType" name="tipo_roupa">
                         <option value="camisa">Camisa</option>
                         <option value="moletom">Moletom</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="size">Tamanho</label>
-                    <select id="size">
+                    <select id="size" name="tamanho_roupa">
                         <option value="P">P</option>
                         <option value="M">M</option>
                         <option value="G">G</option>
                         <option value="GG">GG</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="color">Cor</label>
-                    <input type="text" id="color">
+                    <input type="text" name="cor_roupa" id="color">
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label for="productDescription">Descrição</label>
-                <input type="text" id="productDescription">
+                <input type="text" name="descricao_produto" id="productDescription">
             </div>
-            
+
             <div class="form-group">
                 <label for="productStock">Estoque</label>
-                <input type="number" id="productStock" min="0" required>
+                <input type="number" name="estoque_produto" id="productStock" min="0" required>
             </div>
-            
+
             <div class="form-group">
                 <button type="submit" class="btn" id="saveBtn">Adicionar Produto</button>
-                <button type="button" class="btn btn-secondary hidden" id="cancelBtn">Cancelar</button>
+
             </div>
         </form>
-        
+
         <div class="product-list">
             <h2>Lista de Produtos</h2>
             <table id="productsTable">
@@ -238,194 +129,7 @@ verificaTipo('admin');
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Elementos do formulário
-            const productForm = document.getElementById('productForm');
-            const productId = document.getElementById('productId');
-            const productName = document.getElementById('productName');
-            const productPrice = document.getElementById('productPrice');
-            const productCategory = document.getElementById('productCategory');
-            const productDescription = document.getElementById('productDescription');
-            const productStock = document.getElementById('productStock');
-            
-            // Campos específicos de categoria
-            const jogosFields = document.getElementById('jogosFields');
-            const gameType = document.getElementById('gameType');
-            const players = document.getElementById('players');
-            const gameTime = document.getElementById('gameTime');
-            
-            const roupasFields = document.getElementById('roupasFields');
-            const clothingType = document.getElementById('clothingType');
-            const size = document.getElementById('size');
-            const color = document.getElementById('color');
-            
-            // Botões
-            const saveBtn = document.getElementById('saveBtn');
-            const cancelBtn = document.getElementById('cancelBtn');
-            
-            // Tabela de produtos
-            const productsTableBody = document.getElementById('productsTableBody');
-            
-            // Array para armazenar os produtos
-            let products = JSON.parse(localStorage.getItem('products')) || [];
-            
-            // Mostrar/ocultar campos específicos da categoria
-            productCategory.addEventListener('change', function() {
-                jogosFields.classList.add('hidden');
-                roupasFields.classList.add('hidden');
-                
-                if (this.value === 'jogos') {
-                    jogosFields.classList.remove('hidden');
-                } else if (this.value === 'roupas') {
-                    roupasFields.classList.remove('hidden');
-                }
-            });
-            
-            // Salvar produto (adicionar ou editar)
-            productForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const productData = {
-                    id: productId.value || Date.now().toString(),
-                    name: productName.value,
-                    price: parseFloat(productPrice.value),
-                    category: productCategory.value,
-                    description: productDescription.value,
-                    stock: parseInt(productStock.value),
-                    details: {}
-                };
-                
-                if (productCategory.value === 'jogos') {
-                    productData.details = {
-                        type: gameType.value,
-                        players: players.value,
-                        gameTime: gameTime.value
-                    };
-                } else if (productCategory.value === 'roupas') {
-                    productData.details = {
-                        type: clothingType.value,
-                        size: size.value,
-                        color: color.value
-                    };
-                }
-                
-                // Verificar se é edição ou novo produto
-                const existingIndex = products.findIndex(p => p.id === productData.id);
-                
-                if (existingIndex >= 0) {
-                    // Editar produto existente
-                    products[existingIndex] = productData;
-                    saveBtn.textContent = 'Adicionar Produto';
-                    cancelBtn.classList.add('hidden');
-                } else {
-                    // Adicionar novo produto
-                    products.push(productData);
-                }
-                
-                // Salvar no localStorage
-                localStorage.setItem('products', JSON.stringify(products));
-                
-                // Limpar formulário e atualizar tabela
-                productForm.reset();
-                productId.value = '';
-                jogosFields.classList.add('hidden');
-                roupasFields.classList.add('hidden');
-                renderProducts();
-            });
-            
-            // Cancelar edição
-            cancelBtn.addEventListener('click', function() {
-                productForm.reset();
-                productId.value = '';
-                saveBtn.textContent = 'Adicionar Produto';
-                cancelBtn.classList.add('hidden');
-                jogosFields.classList.add('hidden');
-                roupasFields.classList.add('hidden');
-            });
-            
-            // Renderizar produtos na tabela
-            function renderProducts() {
-                productsTableBody.innerHTML = '';
-                
-                if (products.length === 0) {
-                    productsTableBody.innerHTML = '<tr><td colspan="6">Nenhum produto cadastrado</td></tr>';
-                    return;
-                }
-                
-                products.forEach(product => {
-                    const row = document.createElement('tr');
-                    
-                    // Determinar o tipo específico para exibição
-                    let typeDisplay = '';
-                    if (product.category === 'jogos') {
-                        typeDisplay = product.details.type === 'tabuleiro' ? 'Tabuleiro' : 'Cartas';
-                    } else if (product.category === 'roupas') {
-                        typeDisplay = product.details.type === 'camisa' ? 'Camisa' : 'Moletom';
-                    }
-                    
-                    row.innerHTML = `
-                        <td>${product.name}</td>
-                        <td>R$ ${product.price.toFixed(2)}</td>
-                        <td>${product.category === 'jogos' ? 'Jogos' : 'Roupas'}</td>
-                        <td>${typeDisplay}</td>
-                        <td>${product.stock}</td>
-                        <td class="actions">
-                            <button class="btn btn-secondary" onclick="editProduct('${product.id}')">Editar</button>
-                            <button class="btn btn-danger" onclick="deleteProduct('${product.id}')">Excluir</button>
-                        </td>
-                    `;
-                    
-                    productsTableBody.appendChild(row);
-                });
-            }
-            
-            // Função para editar produto
-            window.editProduct = function(id) {
-                const product = products.find(p => p.id === id);
-                if (!product) return;
-                
-                // Preencher formulário com os dados do produto
-                productId.value = product.id;
-                productName.value = product.name;
-                productPrice.value = product.price;
-                productCategory.value = product.category;
-                productDescription.value = product.description;
-                productStock.value = product.stock;
-                
-                // Preencher campos específicos da categoria
-                if (product.category === 'jogos') {
-                    jogosFields.classList.remove('hidden');
-                    gameType.value = product.details.type;
-                    players.value = product.details.players || '';
-                    gameTime.value = product.details.gameTime || '';
-                } else if (product.category === 'roupas') {
-                    roupasFields.classList.remove('hidden');
-                    clothingType.value = product.details.type;
-                    size.value = product.details.size || 'M';
-                    color.value = product.details.color || '';
-                }
-                
-                // Alterar texto do botão e mostrar botão de cancelar
-                saveBtn.textContent = 'Atualizar Produto';
-                cancelBtn.classList.remove('hidden');
-                
-                // Rolagem suave para o formulário
-                productForm.scrollIntoView({ behavior: 'smooth' });
-            };
-            
-            // Função para excluir produto
-            window.deleteProduct = function(id) {
-                if (confirm('Tem certeza que deseja excluir este produto?')) {
-                    products = products.filter(p => p.id !== id);
-                    localStorage.setItem('products', JSON.stringify(products));
-                    renderProducts();
-                }
-            };
-            
-            // Renderizar produtos ao carregar a página
-            renderProducts();
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

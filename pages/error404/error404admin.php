@@ -326,7 +326,7 @@
         
         <div id="counter">Você será redirecionado em <span id="countdown">10</span> segundos</div>
         
-        <a href="#" class="return-link" id="return-link">Voltar para a página inicial</a>
+        <a href="../../index.php" class="return-link" id="return-link">Voltar para a página inicial</a>
     </div>
 
     <script>
@@ -353,8 +353,8 @@
                 if (countdownValue <= 0) {
                     clearInterval(countdownInterval);
                     // Redirecionar para a página inicial (simulado)
-                    // window.location.href = '/';
-                    countdownElement.parentElement.textContent = "Redirecionamento pausado para demonstração";
+                    window.location.href = '../../index.php';
+                    // countdownElement.parentElement.textContent = "Redirecionamento pausado para demonstração";
                 }
             }, 1000);
             

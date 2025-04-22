@@ -15,14 +15,13 @@ function verificaTipo($tipo_esperado) {
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id_usuario]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if ($row) {
         if ($row['tipo_usuario'] !== $tipo_esperado) {
-            header("Location: /404.php"); // redireciona pra página de erro
+            header("Location: ../pages/error404/error404admin.php"); // redireciona pra página de erro
             exit();
         }
     } else {
-        header("Location: /404.php"); // se o usuário não for encontrado
+        header("Location: ../pages/error404/error404admin.php"); // se o usuário não for encontrado
         exit();
     }
 }

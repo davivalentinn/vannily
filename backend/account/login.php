@@ -3,7 +3,7 @@ $email_ou_usuario = $_POST['email_usuario'] ?? '';
 $senha = $_POST['senha'] ?? '';
 
 try {
-    require_once '../dbconexao.php'; // deve criar um objeto PDO em $conn
+    require_once '../dbconexao.php';
 
     $sql = "SELECT * FROM usuario WHERE email = :valor OR usuario = :valor";
     $stmt = $conn->prepare($sql);
@@ -24,8 +24,14 @@ try {
             $_SESSION['tipo_usuario'] = $dados[0]['tipo_usuario'];
             $_SESSION['data_criacao_usuario'] = $dados[0]['data_criacao'];
 
-            header("Location: ../../index.php");
+            if ($_SESSION['tipo_usuario'] === 'admin') {
+                header("Location: ../../pages/admin/index.php");
+            } else {
+                header("Location: ../../index.php");
+            }
+            
             exit();
+
         } else {
             header("Location: ../../pages/account/login/index.php?erro=senha");
             exit();
@@ -38,4 +44,3 @@ try {
 } catch (Exception $erro) {
     echo "Erro ao tentar logar: " . $erro->getMessage();
 }
-?>
