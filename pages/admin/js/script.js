@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos do formulário
+document.addEventListener('DOMContentLoaded', function () {
     const productForm = document.getElementById('productForm');
     const productId = document.getElementById('productId');
     const productName = document.getElementById('productName');
@@ -7,44 +6,74 @@ document.addEventListener('DOMContentLoaded', function() {
     const productCategory = document.getElementById('productCategory');
     const productDescription = document.getElementById('productDescription');
     const productStock = document.getElementById('productStock');
-    
-    // Campos específicos de categoria
+
     const jogosFields = document.getElementById('jogosFields');
     const gameType = document.getElementById('gameType');
     const players = document.getElementById('players');
     const gameTime = document.getElementById('gameTime');
-    
+
     const roupasFields = document.getElementById('roupasFields');
     const clothingType = document.getElementById('clothingType');
     const size = document.getElementById('size');
     const color = document.getElementById('color');
-    
-    // Botões
+
+    const cartasFields = document.getElementById('cartasFields');
+    const tabuleiroFields = document.getElementById('tabuleiroFields');
+    const camisaFields = document.getElementById('camisaFields');
+    const moletomFields = document.getElementById('moletomFields');
+
     const saveBtn = document.getElementById('saveBtn');
     const cancelBtn = document.getElementById('cancelBtn');
-    
-    // Tabela de produtos
     const productsTableBody = document.getElementById('productsTableBody');
-    
-    // Array para armazenar os produtos
+
     let products = JSON.parse(localStorage.getItem('products')) || [];
-    
-    // Mostrar/ocultar campos específicos da categoria
-    productCategory.addEventListener('change', function() {
+
+    function hideAllFields() {
         jogosFields.classList.add('hidden');
         roupasFields.classList.add('hidden');
-        
+        cartasFields?.classList.add('hidden');
+        tabuleiroFields?.classList.add('hidden');
+        camisaFields?.classList.add('hidden');
+        moletomFields?.classList.add('hidden');
+    }
+
+    function showSubfields() {
+        if (productCategory.value === 'jogos') {
+            if (gameType.value === 'cartas') {
+                cartasFields?.classList.remove('hidden');
+                tabuleiroFields?.classList.add('hidden');
+            } else if (gameType.value === 'tabuleiro') {
+                tabuleiroFields?.classList.remove('hidden');
+                cartasFields?.classList.add('hidden');
+            }
+        } else if (productCategory.value === 'roupas') {
+            if (clothingType.value === 'camisa') {
+                camisaFields?.classList.remove('hidden');
+                moletomFields?.classList.add('hidden');
+            } else if (clothingType.value === 'moletom') {
+                moletomFields?.classList.remove('hidden');
+                camisaFields?.classList.add('hidden');
+            }
+        }
+    }
+
+    productCategory.addEventListener('change', function () {
+        hideAllFields();
         if (this.value === 'jogos') {
             jogosFields.classList.remove('hidden');
+            showSubfields();
         } else if (this.value === 'roupas') {
             roupasFields.classList.remove('hidden');
+            showSubfields();
         }
     });
-    
-    // Salvar produto (adicionar ou editar)
-    productForm.addEventListener('submit', function(e) {
+
+    gameType.addEventListener('change', showSubfields);
+    clothingType.addEventListener('change', showSubfields);
+
+    productForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         const productData = {
             id: productId.value || Date.now().toString(),
             name: productName.value,
@@ -54,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: parseInt(productStock.value),
             details: {}
         };
-        
+
         if (productCategory.value === 'jogos') {
             productData.details = {
                 type: gameType.value,
@@ -68,61 +97,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: color.value
             };
         }
-        
-        // Verificar se é edição ou novo produto
+
         const existingIndex = products.findIndex(p => p.id === productData.id);
-        
         if (existingIndex >= 0) {
-            // Editar produto existente
             products[existingIndex] = productData;
             saveBtn.textContent = 'Adicionar Produto';
             cancelBtn.classList.add('hidden');
         } else {
-            // Adicionar novo produto
             products.push(productData);
         }
-        
-        // Salvar no localStorage
+
         localStorage.setItem('products', JSON.stringify(products));
-        
-        // Limpar formulário e atualizar tabela
         productForm.reset();
         productId.value = '';
-        jogosFields.classList.add('hidden');
-        roupasFields.classList.add('hidden');
+        hideAllFields();
         renderProducts();
     });
-    
-    // Cancelar edição
-    cancelBtn.addEventListener('click', function() {
+
+    cancelBtn.addEventListener('click', function () {
         productForm.reset();
         productId.value = '';
         saveBtn.textContent = 'Adicionar Produto';
         cancelBtn.classList.add('hidden');
-        jogosFields.classList.add('hidden');
-        roupasFields.classList.add('hidden');
+        hideAllFields();
     });
-    
-    // Renderizar produtos na tabela
+
     function renderProducts() {
         productsTableBody.innerHTML = '';
-        
         if (products.length === 0) {
             productsTableBody.innerHTML = '<tr><td colspan="6">Nenhum produto cadastrado</td></tr>';
             return;
         }
-        
+
         products.forEach(product => {
             const row = document.createElement('tr');
-            
-            // Determinar o tipo específico para exibição
             let typeDisplay = '';
             if (product.category === 'jogos') {
                 typeDisplay = product.details.type === 'tabuleiro' ? 'Tabuleiro' : 'Cartas';
             } else if (product.category === 'roupas') {
                 typeDisplay = product.details.type === 'camisa' ? 'Camisa' : 'Moletom';
             }
-            
+
             row.innerHTML = `
                 <td>${product.name}</td>
                 <td>R$ ${product.price.toFixed(2)}</td>
@@ -134,25 +149,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button class="btn btn-danger" onclick="deleteProduct('${product.id}')">Excluir</button>
                 </td>
             `;
-            
             productsTableBody.appendChild(row);
         });
     }
-    
-    // Função para editar produto
-    window.editProduct = function(id) {
+
+    window.editProduct = function (id) {
         const product = products.find(p => p.id === id);
         if (!product) return;
-        
-        // Preencher formulário com os dados do produto
+
         productId.value = product.id;
         productName.value = product.name;
         productPrice.value = product.price;
         productCategory.value = product.category;
         productDescription.value = product.description;
         productStock.value = product.stock;
-        
-        // Preencher campos específicos da categoria
+
         if (product.category === 'jogos') {
             jogosFields.classList.remove('hidden');
             gameType.value = product.details.type;
@@ -164,24 +175,20 @@ document.addEventListener('DOMContentLoaded', function() {
             size.value = product.details.size || 'M';
             color.value = product.details.color || '';
         }
-        
-        // Alterar texto do botão e mostrar botão de cancelar
+
+        showSubfields();
         saveBtn.textContent = 'Atualizar Produto';
         cancelBtn.classList.remove('hidden');
-        
-        // Rolagem suave para o formulário
         productForm.scrollIntoView({ behavior: 'smooth' });
     };
-    
-    // Função para excluir produto
-    window.deleteProduct = function(id) {
+
+    window.deleteProduct = function (id) {
         if (confirm('Tem certeza que deseja excluir este produto?')) {
             products = products.filter(p => p.id !== id);
             localStorage.setItem('products', JSON.stringify(products));
             renderProducts();
         }
     };
-    
-    // Renderizar produtos ao carregar a página
+
     renderProducts();
 });
