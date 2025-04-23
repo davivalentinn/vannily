@@ -3,6 +3,7 @@
 header {
     background-color: #353535;
 }
+
 /*subMenu*/
 .sub-menu {
     background-color: #8B1689;
@@ -35,6 +36,7 @@ ul li .dropdown-item:hover {
 .dropdown-menu {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
@@ -43,7 +45,7 @@ ul li .dropdown-item:hover {
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #ffffff;
 }
 
@@ -63,7 +65,8 @@ a,
 li {
     font-family: "Montserrat", sans-serif;
 }
-.products-main{
+
+.products-main {
     max-width: 1600px;
     margin: 0 auto;
     padding-block: 100px 100px;
@@ -71,7 +74,7 @@ li {
 
 a {
     text-decoration: none;
-    
+
 }
 
 li {
@@ -245,7 +248,7 @@ li {
 }
 
 
-.button-account-user{
+.button-account-user {
     background-color: #8B1689;
     display: flex;
     justify-content: center;
@@ -263,27 +266,75 @@ li {
     font-weight: 600;
 }
 
-.button-account-user a:hover{
+.button-account-user a:hover {
     color: #ffffffe3;
 }
 
 .button-account-user div {
     color: #ffffff;
-    
+
 }
-.conteudo-perfil{
+
+.container-perfil {
     width: 80%;
     height: 900px;
     border: 5px solid #CA2BC7;
     margin-top: 90px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
-.titulo-perfil h1{
+
+.titulo-perfil h1 {
     text-transform: uppercase;
     font-size: 30px;
     font-weight: 800;
     background-color: #ffffff;
-    margin: -120px 0 0 60px;
+    margin: -120px 0 0 5%;
     width: 310px;
     text-align: center;
+}
+
+.container-imagem-perfil {
+    border-radius: 100%;
+    border: 5px solid #CA2BC7;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-imagem-perfil i {
+    font-size: 6rem;
+    color: #CA2BC7;
+}
+
+input[type="file"] {
+    display: none;
+
+}
+
+.container-imagem-perfil label {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-size: 14px;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+}
+
+.conteudo-perfil {
+    width: 100%;
+    margin: -100px 0 0 0;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+.nome-usuario h1{
+    margin: 0;
 }
