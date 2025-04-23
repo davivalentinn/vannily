@@ -303,6 +303,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 50px 0 0;
 }
 
 .container-imagem-perfil i {
@@ -327,14 +328,105 @@ input[type="file"] {
     width: 80px;
     height: 80px;
 }
-
+.container-informacoes{
+    width: auto;
+}
 .conteudo-perfil {
     width: 100%;
     margin: -100px 0 0 0;
-    padding: 100px;
+    padding: 5%;
     display: flex;
     justify-content: center;
 }
 .nome-usuario h1{
+    margin: 0 0 10px 0;
+    font-size: 2.3rem;
+}
+.linha-superior-roxa{
+    width: 115%;
+    background-color: #CA2BC7;
+    height: 5px;
+}
+.caixa-apelido p{
     margin: 0;
+    padding: 12px;
+    font-weight: 700;
+}
+
+.caixa-apelido{
+    background-color: #F0F0F0;
+    border: 3px solid #CA2BC7;
+    border-radius: 5px;
+    display: flex;
+    width: 250px; 
+    justify-content: space-between;
+}
+
+.caixa-apelido i {
+    color: #CA2BC7;
+    font-weight: 1000;
+    font-size: 18px;
+    margin: 0 5px 0 0;
+}
+.caixa-email p {
+    margin: 0;
+    padding: 12px;
+    font-weight: 700;
+    
+}
+.caixa-email{
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: flex;
+    width: 250px; 
+    border: 2px rgb(207, 207, 207) solid;
+}
+.caixa-alterar-dados{
+    background-color: #CA2BC7;
+    width: 220px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s all;
+}
+.caixa-alterar-dados:hover{
+    background-color: #ae1bac;
+    font-weight: 400;
+}
+.caixa-alterar-dados p{
+    margin: 0;
+}
+.botoes-superior{
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+.botoes-superior i{
+    font-size: 1.5rem;
+    color: red;
+}
+.botao-sair-conta p{
+    margin: 0;
+}
+.botao-sair-conta{
+    border: 3px solid #CA2BC7;
+    width: 180px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .4s all;
+}
+.botao-sair-conta:hover{
+    color: white;
+    font-weight: 600;
+    background-color: #CA2BC7;
 }
