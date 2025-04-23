@@ -71,116 +71,116 @@ document.addEventListener('DOMContentLoaded', function () {
     gameType.addEventListener('change', showSubfields);
     clothingType.addEventListener('change', showSubfields);
 
-    productForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+    // productForm.addEventListener('submit', function (e) {
+    //     e.preventDefault();
 
-        const productData = {
-            id: productId.value || Date.now().toString(),
-            name: productName.value,
-            price: parseFloat(productPrice.value),
-            category: productCategory.value,
-            description: productDescription.value,
-            stock: parseInt(productStock.value),
-            details: {}
-        };
+    //     const productData = {
+    //         id: productId.value || Date.now().toString(),
+    //         name: productName.value,
+    //         price: parseFloat(productPrice.value),
+    //         category: productCategory.value,
+    //         description: productDescription.value,
+    //         stock: parseInt(productStock.value),
+    //         details: {}
+    //     };
 
-        if (productCategory.value === 'jogos') {
-            productData.details = {
-                type: gameType.value,
-                players: players.value,
-                gameTime: gameTime.value
-            };
-        } else if (productCategory.value === 'roupas') {
-            productData.details = {
-                type: clothingType.value,
-                size: size.value,
-                color: color.value
-            };
-        }
+    //     if (productCategory.value === 'jogos') {
+    //         productData.details = {
+    //             type: gameType.value,
+    //             players: players.value,
+    //             gameTime: gameTime.value
+    //         };
+    //     } else if (productCategory.value === 'roupas') {
+    //         productData.details = {
+    //             type: clothingType.value,
+    //             size: size.value,
+    //             color: color.value
+    //         };
+    //     }
 
-        const existingIndex = products.findIndex(p => p.id === productData.id);
-        if (existingIndex >= 0) {
-            products[existingIndex] = productData;
-            saveBtn.textContent = 'Adicionar Produto';
-            cancelBtn.classList.add('hidden');
-        } else {
-            products.push(productData);
-        }
+    //     const existingIndex = products.findIndex(p => p.id === productData.id);
+    //     if (existingIndex >= 0) {
+    //         products[existingIndex] = productData;
+    //         saveBtn.textContent = 'Adicionar Produto';
+    //         cancelBtn.classList.add('hidden');
+    //     } else {
+    //         products.push(productData);
+    //     }
 
-        localStorage.setItem('products', JSON.stringify(products));
-        productForm.reset();
-        productId.value = '';
-        hideAllFields();
-        renderProducts();
-    });
+    //     localStorage.setItem('products', JSON.stringify(products));
+    //     productForm.reset();
+    //     productId.value = '';
+    //     hideAllFields();
+    //     renderProducts();
+    // });
 
-    cancelBtn.addEventListener('click', function () {
-        productForm.reset();
-        productId.value = '';
-        saveBtn.textContent = 'Adicionar Produto';
-        cancelBtn.classList.add('hidden');
-        hideAllFields();
-    });
+    // cancelBtn.addEventListener('click', function () {
+    //     productForm.reset();
+    //     productId.value = '';
+    //     saveBtn.textContent = 'Adicionar Produto';
+    //     cancelBtn.classList.add('hidden');
+    //     hideAllFields();
+    // });
 
-    function renderProducts() {
-        productsTableBody.innerHTML = '';
-        if (products.length === 0) {
-            productsTableBody.innerHTML = '<tr><td colspan="6">Nenhum produto cadastrado</td></tr>';
-            return;
-        }
+    // function renderProducts() {
+    //     productsTableBody.innerHTML = '';
+    //     if (products.length === 0) {
+    //         productsTableBody.innerHTML = '<tr><td colspan="6">Nenhum produto cadastrado</td></tr>';
+    //         return;
+    //     }
 
-        products.forEach(product => {
-            const row = document.createElement('tr');
-            let typeDisplay = '';
-            if (product.category === 'jogos') {
-                typeDisplay = product.details.type === 'tabuleiro' ? 'Tabuleiro' : 'Cartas';
-            } else if (product.category === 'roupas') {
-                typeDisplay = product.details.type === 'camisa' ? 'Camisa' : 'Moletom';
-            }
+    //     products.forEach(product => {
+    //         const row = document.createElement('tr');
+    //         let typeDisplay = '';
+    //         if (product.category === 'jogos') {
+    //             typeDisplay = product.details.type === 'tabuleiro' ? 'Tabuleiro' : 'Cartas';
+    //         } else if (product.category === 'roupas') {
+    //             typeDisplay = product.details.type === 'camisa' ? 'Camisa' : 'Moletom';
+    //         }
 
-            row.innerHTML = `
-                <td>${product.name}</td>
-                <td>R$ ${product.price.toFixed(2)}</td>
-                <td>${product.category === 'jogos' ? 'Jogos' : 'Roupas'}</td>
-                <td>${typeDisplay}</td>
-                <td>${product.stock}</td>
-                <td class="actions">
-                    <button class="btn btn-secondary" onclick="editProduct('${product.id}')">Editar</button>
-                    <button class="btn btn-danger" onclick="deleteProduct('${product.id}')">Excluir</button>
-                </td>
-            `;
-            productsTableBody.appendChild(row);
-        });
-    }
+    //         row.innerHTML = `
+    //             <td>${product.name}</td>
+    //             <td>R$ ${product.price.toFixed(2)}</td>
+    //             <td>${product.category === 'jogos' ? 'Jogos' : 'Roupas'}</td>
+    //             <td>${typeDisplay}</td>
+    //             <td>${product.stock}</td>
+    //             <td class="actions">
+    //                 <button class="btn btn-secondary" onclick="editProduct('${product.id}')">Editar</button>
+    //                 <button class="btn btn-danger" onclick="deleteProduct('${product.id}')">Excluir</button>
+    //             </td>
+    //         `;
+    //         productsTableBody.appendChild(row);
+    //     });
+    // }
 
-    window.editProduct = function (id) {
-        const product = products.find(p => p.id === id);
-        if (!product) return;
+    // window.editProduct = function (id) {
+    //     const product = products.find(p => p.id === id);
+    //     if (!product) return;
 
-        productId.value = product.id;
-        productName.value = product.name;
-        productPrice.value = product.price;
-        productCategory.value = product.category;
-        productDescription.value = product.description;
-        productStock.value = product.stock;
+    //     productId.value = product.id;
+    //     productName.value = product.name;
+    //     productPrice.value = product.price;
+    //     productCategory.value = product.category;
+    //     productDescription.value = product.description;
+    //     productStock.value = product.stock;
 
-        if (product.category === 'jogos') {
-            jogosFields.classList.remove('hidden');
-            gameType.value = product.details.type;
-            players.value = product.details.players || '';
-            gameTime.value = product.details.gameTime || '';
-        } else if (product.category === 'roupas') {
-            roupasFields.classList.remove('hidden');
-            clothingType.value = product.details.type;
-            size.value = product.details.size || 'M';
-            color.value = product.details.color || '';
-        }
+    //     if (product.category === 'jogos') {
+    //         jogosFields.classList.remove('hidden');
+    //         gameType.value = product.details.type;
+    //         players.value = product.details.players || '';
+    //         gameTime.value = product.details.gameTime || '';
+    //     } else if (product.category === 'roupas') {
+    //         roupasFields.classList.remove('hidden');
+    //         clothingType.value = product.details.type;
+    //         size.value = product.details.size || 'M';
+    //         color.value = product.details.color || '';
+    //     }
 
-        showSubfields();
-        saveBtn.textContent = 'Atualizar Produto';
-        cancelBtn.classList.remove('hidden');
-        productForm.scrollIntoView({ behavior: 'smooth' });
-    };
+    //     showSubfields();
+    //     saveBtn.textContent = 'Atualizar Produto';
+    //     cancelBtn.classList.remove('hidden');
+    //     productForm.scrollIntoView({ behavior: 'smooth' });
+    // };
 
     window.deleteProduct = function (id) {
         if (confirm('Tem certeza que deseja excluir este produto?')) {

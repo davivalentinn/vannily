@@ -2,7 +2,7 @@
 require_once("../../backend/verifyAdmin.php");
 
 // Garante que só admin acesse
-verificaTipo('admin');
+verificaTipo(tipo_esperado: 'admin');
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +19,8 @@ verificaTipo('admin');
     <div class="container">
         <h1>Dashboard de Produtos</h1>
 
-        <form action="../../backend/products/add_product.php" id="productForm" method="post"
-            enctype="multipart/form-data">
-            <input type="hidden" id="productId">
+        <form action="add_product.php" id="productForm" method="POST"  enctype="multipart/form-data">
+            
 
             <div class="form-group">
                 <label for="productName">Nome do Produto</label>
