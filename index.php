@@ -1571,13 +1571,20 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                 <button class="slider-nav next-btn""><i class=" ri-arrow-right-line"></i></button>
             </div>
         </section>
+
         <section class="category-products products-main">
+            <div class="category-products-infor">
+            <h1>Categorias</h1>
+            
             <div class="tabs-btns">
-                <span class="tab__btn active-tab" data-target="#board-games">Board Games</span>
-                <span class="tab__btn" data-target="#card-games">Card Games</span>
-                <span class="tab__btn" data-target="#moda-geek">Moda Geek</span>
-                <span class="tab__btn" data-target="#moda-geek">Periféricos</span>
+                <span class="tab-btn active-tab" data-target="#board-games">Board Games</span>
+                <span class="tab-btn" data-target="#card-games">Card Games</span>
+                <span class="tab-btn" data-target="#moda-geek">Moda Geek</span>
+                <span class="tab-btn" data-target="#perifericos">Periféricos</span>
             </div>
+            
+            </div>
+            <hr>
 
             <div class="tab-items">
                 <div class="tab-item active-tab" content id="board-games">
@@ -2678,7 +2685,7 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
 
                     </div>
                 </div>
-                <div class="tab-item" content id="moda-geek">
+                <div class="tab-item" content id="perifericos">
                     <div class="category-products-container grid">
                         <!-- Product 1 -->
                         <div class="product-card">
@@ -3058,6 +3065,7 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/product-slider.js"></script>
+    <script src="js/tab-btns-category.js"></script>
 </body>
 
 </html>

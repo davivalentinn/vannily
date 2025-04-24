@@ -820,7 +820,7 @@ ul li .dropdown-item:hover {
     padding: 10px 15px;;
     margin-top: 10px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .favoritos-products{
@@ -1038,21 +1038,14 @@ ul li .dropdown-item:hover {
 }
 
 /*============== CATEGORIA DOS PRODUTOS (GRID)*/
-
-
-.header-products-category h1 {
-    color: #D93CD6;
-    font-size: 30px;
-    font-weight: 800;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-
+.grid {
+    display: grid;
+    gap: 1.5rem;
+ }
 .product-card-category {
     flex: 1;
     min-width: 0; /* Importante para permitir que os cards encolham */
-    background-color: #ffffff;
+     background-color: #ffffff;
     border-radius: 10px;
     padding: 15px;
     color: #333;
@@ -1062,24 +1055,75 @@ ul li .dropdown-item:hover {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-.header-products-category h3 {
+.category-products-container{
+    grid-template-columns: repeat(6, 1fr);
+    padding-block: 2rem;
+}
+
+.tabs-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+ }
+
+ .category-products-infor{
+    display: flex;
+    justify-content: space-between;
+ }
+
+ .category-products-infor h1 {
+    font-size: 30px;
     color: #A61EA4;
     font-weight: 800;
     text-transform: uppercase;
-    font-size: 30px;
-    border-bottom: 6px solid #A61EA4;
 
+    
+
+ }
+
+ .category-products hr {
+    opacity: 100;
+    border: 2px solid #A61EA4; /* A61EA4 em formato RGBA */
 }
 
-.option-category{
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    background-color: #A61EA4;
+ 
+ .tab-btn {
+    background-color: transparent;
+    color: #353535;
+    padding: 10px 10px;
     border-radius: 5px;
-    color: #ffffff;
+    border: 2px solid #A61EA4;
+    font-size: 18px;
     font-weight: 600;
-}
+    cursor: pointer;
+    text-align: center;
+ }
+
+ .tab-btn.active-tab {
+    color: #ffffff;
+    background-color: #A61EA4;
+    
+ }
+ 
+ .tab-item:not(.active-tab) {
+    display: none;
+ }
+ 
+ .products__container {
+    grid-template-columns: repeat(4, 1fr);
+    padding-block: 2rem;
+ }
+ 
+ .product__item {
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--container-color);
+    transition: all 0.2s var(--transition);
+ }
+
+ 
+
+
 
 
 /*=========== responsividade =========*/
