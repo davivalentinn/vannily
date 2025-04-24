@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/04/2025 às 00:46
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 24-Abr-2025 às 15:36
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `camisa`
+-- Estrutura da tabela `camisa`
 --
 
 CREATE TABLE `camisa` (
@@ -39,7 +39,7 @@ CREATE TABLE `camisa` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categoria`
+-- Estrutura da tabela `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -47,10 +47,18 @@ CREATE TABLE `categoria` (
   `nome` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`id`, `nome`) VALUES
+(1, 'roupas'),
+(2, 'jogos');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `endereco`
+-- Estrutura da tabela `endereco`
 --
 
 CREATE TABLE `endereco` (
@@ -69,7 +77,7 @@ CREATE TABLE `endereco` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `jogo_cartas`
+-- Estrutura da tabela `jogo_cartas`
 --
 
 CREATE TABLE `jogo_cartas` (
@@ -85,7 +93,7 @@ CREATE TABLE `jogo_cartas` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `jogo_tabuleiro`
+-- Estrutura da tabela `jogo_tabuleiro`
 --
 
 CREATE TABLE `jogo_tabuleiro` (
@@ -101,7 +109,7 @@ CREATE TABLE `jogo_tabuleiro` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `moletom`
+-- Estrutura da tabela `moletom`
 --
 
 CREATE TABLE `moletom` (
@@ -116,7 +124,7 @@ CREATE TABLE `moletom` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -132,13 +140,23 @@ CREATE TABLE `produto` (
   `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `produto`
+--
+
+INSERT INTO `produto` (`id`, `nome`, `imagem`, `preco`, `desconto`, `unidades`, `descricao`, `fornecedor`, `transportadora`, `id_categoria`) VALUES
+(1, 'Teste', '../../assets/images/products_db/Desert.jpg', '123123.00', NULL, 23, 'qwe', '123', '123', 1),
+(2, 'Pain', '../../assets/images/products_db/Hydrangeas.jpg', '23.00', NULL, 123, '123', 'asd', 'sda', 2),
+(3, 'camisinha', '../../assets/images/products_db/Penguins.jpg', '123.00', NULL, 12, '12', 'saqd', '12', 1);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto_jogo`
+-- Estrutura da tabela `produto_jogo`
 --
 
 CREATE TABLE `produto_jogo` (
+  `id` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `tema` varchar(100) DEFAULT NULL,
   `genero` varchar(50) DEFAULT NULL,
@@ -150,10 +168,11 @@ CREATE TABLE `produto_jogo` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto_roupa`
+-- Estrutura da tabela `produto_roupa`
 --
 
 CREATE TABLE `produto_roupa` (
+  `id` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `tamanho` varchar(10) DEFAULT NULL,
   `cor` varchar(30) DEFAULT NULL,
@@ -164,7 +183,7 @@ CREATE TABLE `produto_roupa` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -179,74 +198,77 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `numero_telefone`, `email`, `usuario`, `senha`, `tipo_usuario`, `data_criacao`) VALUES
-(18, 'Davi Valetins de Sousa', '68992123961', 'davivalentns@gmail.com', 'davivalentinn', '$2y$10$RO21HGEFWw42zYMRXUIZEeBnn9vwHSLFF.E8TQBWWFnGbmoLcdk.m', 'pessoa fisica', '2025-04-19 14:55:28');
+(18, 'Davi Valetins de Sousa', '68992123961', 'davivalentns@gmail.com', 'davivalentinn', '$2y$10$RO21HGEFWw42zYMRXUIZEeBnn9vwHSLFF.E8TQBWWFnGbmoLcdk.m', 'pessoa fisica', '2025-04-19 14:55:28'),
+(19, 'admin', '098423908', 'admin@gmail.com', 'admin', '$2y$10$3uuKwBNLwGC/eXVv3qwb/.ES3uZgpLvMQb4AOZxT8vbFJ7RC9SsTi', 'admin', '2025-04-24 07:24:28');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `camisa`
+-- Índices para tabela `camisa`
 --
 ALTER TABLE `camisa`
   ADD PRIMARY KEY (`id_produto`);
 
 --
--- Índices de tabela `categoria`
+-- Índices para tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `endereco`
+-- Índices para tabela `endereco`
 --
 ALTER TABLE `endereco`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_usuario` (`id_usuario`);
 
 --
--- Índices de tabela `jogo_cartas`
+-- Índices para tabela `jogo_cartas`
 --
 ALTER TABLE `jogo_cartas`
   ADD PRIMARY KEY (`id_produto`);
 
 --
--- Índices de tabela `jogo_tabuleiro`
+-- Índices para tabela `jogo_tabuleiro`
 --
 ALTER TABLE `jogo_tabuleiro`
   ADD PRIMARY KEY (`id_produto`);
 
 --
--- Índices de tabela `moletom`
+-- Índices para tabela `moletom`
 --
 ALTER TABLE `moletom`
   ADD PRIMARY KEY (`id_produto`);
 
 --
--- Índices de tabela `produto`
+-- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Índices de tabela `produto_jogo`
+-- Índices para tabela `produto_jogo`
 --
 ALTER TABLE `produto_jogo`
-  ADD PRIMARY KEY (`id_produto`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_produto` (`id_produto`);
 
 --
--- Índices de tabela `produto_roupa`
+-- Índices para tabela `produto_roupa`
 --
 ALTER TABLE `produto_roupa`
-  ADD PRIMARY KEY (`id_produto`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_produto_roupa` (`id_produto`);
 
 --
--- Índices de tabela `usuario`
+-- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
@@ -254,14 +276,14 @@ ALTER TABLE `usuario`
   ADD UNIQUE KEY `usuario` (`usuario`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
@@ -273,65 +295,77 @@ ALTER TABLE `endereco`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `produto_jogo`
+--
+ALTER TABLE `produto_jogo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `produto_roupa`
+--
+ALTER TABLE `produto_roupa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `camisa`
+-- Limitadores para a tabela `camisa`
 --
 ALTER TABLE `camisa`
   ADD CONSTRAINT `camisa_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
 
 --
--- Restrições para tabelas `endereco`
+-- Limitadores para a tabela `endereco`
 --
 ALTER TABLE `endereco`
   ADD CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
 
 --
--- Restrições para tabelas `jogo_cartas`
+-- Limitadores para a tabela `jogo_cartas`
 --
 ALTER TABLE `jogo_cartas`
   ADD CONSTRAINT `jogo_cartas_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
 
 --
--- Restrições para tabelas `jogo_tabuleiro`
+-- Limitadores para a tabela `jogo_tabuleiro`
 --
 ALTER TABLE `jogo_tabuleiro`
   ADD CONSTRAINT `jogo_tabuleiro_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
 
 --
--- Restrições para tabelas `moletom`
+-- Limitadores para a tabela `moletom`
 --
 ALTER TABLE `moletom`
   ADD CONSTRAINT `moletom_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
 
 --
--- Restrições para tabelas `produto`
+-- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 
 --
--- Restrições para tabelas `produto_jogo`
+-- Limitadores para a tabela `produto_jogo`
 --
 ALTER TABLE `produto_jogo`
-  ADD CONSTRAINT `produto_jogo_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
+  ADD CONSTRAINT `fk_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `produto_roupa`
+-- Limitadores para a tabela `produto_roupa`
 --
 ALTER TABLE `produto_roupa`
-  ADD CONSTRAINT `produto_roupa_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
+  ADD CONSTRAINT `fk_produto_roupa` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
