@@ -170,7 +170,7 @@ verificaTipo(tipo_esperado: 'admin');
 
                 <div class="form-group">
                     <label for="size">Tamanho</label>
-                    <select id="size" name="tamanho_roupa">
+                    <select id="size" name="tamanho">
                         <option value="P">P</option>
                         <option value="M">M</option>
                         <option value="G">G</option>
@@ -180,7 +180,7 @@ verificaTipo(tipo_esperado: 'admin');
 
                 <div class="form-group">
                     <label for="color">Cor</label>
-                    <input type="text" name="cor_roupa" id="color">
+                    <input type="text" name="cor" id="color">
                 </div>
 
                 <div class="form-group">
