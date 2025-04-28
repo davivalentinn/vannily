@@ -70,102 +70,109 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_produto = $conn->lastInsertId();
 
     // Agora, insere nas tabelas específicas conforme a categoria enviada
-    if ($categoria_produto == 'jogos') {       
-        $tema = $_POST['tema'];
-        $genero = $_POST['genero'];
-        $qtd_pessoas = $_POST['numero_jogadores'];
-        $classificacao_indicativa = $_POST['classificacao'];
-        $duracao = $_POST['tempo_jogo'];
+   // Agora, insere nas tabelas específicas conforme a categoria enviada
+if ($categoria_produto == 'jogos') {       
+    $tema = $_POST['tema'];
+    $genero = $_POST['genero'];
+    $qtd_pessoas = $_POST['numero_jogadores'];
+    $classificacao_indicativa = $_POST['classificacao'];
+    $duracao = $_POST['tempo_jogo'];
+    $tipo_baralho = $_POST['tipo_baralho'] ?? null;
+    $tamanho_cartas = $_POST['tamanho_cartas'] ?? null;
+    $material_cartas = $_POST['material_cartas'] ?? null;
+    $tipo_jogo_produto = $_POST['tipo_jogo'] ?? null; // para produto_jogo
+    $numero_cartas = $_POST['numero_cartas'] ?? null;
+    $ilustrado = isset($_POST['ilustrado']) ? 1 : 0;
+    $qtd_pecas = $_POST['qtd_pecas'] ?? null;
+    $tamanho_tabuleiro = $_POST['tamanho_tabuleiro'] ?? null;
+    $material_tabuleiro = $_POST['material_tabuleiro'] ?? null;
+    $tipo_tabuleiro = $_POST['tipo_tabuleiro'] ?? null;
+    $complexidade = $_POST['complexidade'] ?? null;
+    $possui_cartas = isset($_POST['possui_cartas']) ? 1 : 0;
 
-        $sql_produto_jogo = "INSERT INTO produto_jogo 
-                            (id_produto, tema, genero, qtd_pessoas, classificacao_indicativa, duracao) 
-                            VALUES 
-                            (:id_produto, :tema, :genero, :qtd_pessoas, :classificacao_indicativa, :duracao)";
-        
-        $stmt_produto_jogo = $conn->prepare($sql_produto_jogo);
-        $stmt_produto_jogo->bindParam(':id_produto', $id_produto);
-        $stmt_produto_jogo->bindParam(':tema', $tema);
-        $stmt_produto_jogo->bindParam(':genero', $genero);
-        $stmt_produto_jogo->bindParam(':qtd_pessoas', $qtd_pessoas);
-        $stmt_produto_jogo->bindParam(':classificacao_indicativa', $classificacao_indicativa);
-        $stmt_produto_jogo->bindParam(':duracao', $duracao);
+    $sql_produto_jogo = "INSERT INTO produto_jogo 
+                        (id_produto, tema, genero, qtd_pessoas, classificacao_indicativa, duracao,
+                        tipo_baralho, tamanho_cartas, material_cartas, tipo_jogo, numero_cartas, ilustrado,
+                        qtd_pecas, tamanho_tabuleiro, material_tabuleiro, tipo_tabuleiro,
+                        complexidade, possui_cartas) 
+                        VALUES 
+                        (:id_produto, :tema, :genero, :qtd_pessoas, :classificacao_indicativa, :duracao,
+                        :tipo_baralho, :tamanho_cartas, :material_cartas, :tipo_jogo_produto, :numero_cartas, :ilustrado,
+                        :qtd_pecas, :tamanho_tabuleiro, :material_tabuleiro, :tipo_tabuleiro,
+                        :complexidade, :possui_cartas)";
+    
+    $stmt_produto_jogo = $conn->prepare($sql_produto_jogo);
+    $stmt_produto_jogo->bindParam(':id_produto', $id_produto);
+    $stmt_produto_jogo->bindParam(':tema', $tema);
+    $stmt_produto_jogo->bindParam(':genero', $genero);
+    $stmt_produto_jogo->bindParam(':qtd_pessoas', $qtd_pessoas);
+    $stmt_produto_jogo->bindParam(':classificacao_indicativa', $classificacao_indicativa);
+    $stmt_produto_jogo->bindParam(':duracao', $duracao);
+    $stmt_produto_jogo->bindParam(':tipo_baralho', $tipo_baralho);
+    $stmt_produto_jogo->bindParam(':tamanho_cartas', $tamanho_cartas);
+    $stmt_produto_jogo->bindParam(':material_cartas', $material_cartas);
+    $stmt_produto_jogo->bindParam(':tipo_jogo_produto', $tipo_jogo_produto);
+    $stmt_produto_jogo->bindParam(':numero_cartas', $numero_cartas);
+    $stmt_produto_jogo->bindParam(':ilustrado', $ilustrado);
+    $stmt_produto_jogo->bindParam(':qtd_pecas', $qtd_pecas);
+    $stmt_produto_jogo->bindParam(':tamanho_tabuleiro', $tamanho_tabuleiro);
+    $stmt_produto_jogo->bindParam(':material_tabuleiro', $material_tabuleiro);
+    $stmt_produto_jogo->bindParam(':tipo_tabuleiro', $tipo_tabuleiro);
+    $stmt_produto_jogo->bindParam(':complexidade', $complexidade);
+    $stmt_produto_jogo->bindParam(':possui_cartas', $possui_cartas);
+    $stmt_produto_jogo->execute();
+}
 
-        $stmt_produto_jogo->execute();
 
-        // Agora inserimos nas tabelas jogo_tabuleiro ou jogo_cartas
-        $tipo_jogo = $_POST['tipo_jogo'];
+if ($categoria_produto == 'roupas') {       
+    // Recebendo os dados do formulário
+    $tamanho = $_POST['tamanho'];
+    $cor = $_POST['cor'];
+    $dimensoes = $_POST['dimensoes'];
+    $numero_modelo = $_POST['numero_modelo'];
+    $tipo_capuz = isset($_POST['tipo_capuz']) ? 1 : 0;  // Considerando que seja um campo de checkbox ou similar
+    $espessura_tecido = $_POST['espessura_tecido'];
+    $material_forro = $_POST['material_forro'];
+    $possui_ziper = isset($_POST['possui_ziper']) ? 1 : 0;  // Checkbox ou valor booleano
+    $resistente_agua = isset($_POST['resistente_agua']) ? 1 : 0;  // Checkbox ou valor booleano
+    $tipo_gola = $_POST['tipo_gola'];
+    $tipo_manga = $_POST['tipo_manga'];
+    $tecido = $_POST['tecido'];
+    $possui_bolsos = isset($_POST['possui_bolsos']) ? 1 : 0;  // Checkbox ou valor booleano
+    $estampa_personalizada = isset($_POST['estampa_personalizada']) ? 1 : 0;  // Checkbox ou valor booleano
+    $modelo = $_POST['tipo_roupa'];
 
-        if ($tipo_jogo == 'tabuleiro') {
-            $qtd_pecas = $_POST['qtd_pecas'];
-            $tamanho_tabuleiro = $_POST['tamanho_tabuleiro'];
-            $material_tabuleiro = $_POST['material_tabuleiro'];
-            $tipo_tabuleiro = $_POST['tipo_tabuleiro'];
-            $complexidade = $_POST['complexidade'];
-            $possui_cartas = isset($_POST['possui_cartas']) ? 1 : 0;
+    // Inserindo dados na tabela produto_roupa
+    $sql_produto_roupa = "INSERT INTO produto_roupa 
+                        (id_produto, tamanho, cor, dimensoes, numero_modelo, tipo_capuz, espessura_tecido, material_forro, possui_ziper, resistente_agua, tipo_gola, tipo_manga, tecido, possui_bolsos, estampa_personalizada, modelo) 
+                        VALUES 
+                        (:id_produto, :tamanho, :cor, :dimensoes, :numero_modelo, :tipo_capuz, :espessura_tecido, :material_forro, :possui_ziper, :resistente_agua, :tipo_gola, :tipo_manga, :tecido, :possui_bolsos, :estampa_personalizada, :modelo)";
+    
+    // Preparando a query para inserir
+    $stmt_produto_roupa = $conn->prepare($sql_produto_roupa);
+    
+    // Bind dos parâmetros
+    $stmt_produto_roupa->bindParam(':id_produto', $id_produto);
+    $stmt_produto_roupa->bindParam(':tamanho', $tamanho);
+    $stmt_produto_roupa->bindParam(':cor', $cor);
+    $stmt_produto_roupa->bindParam(':dimensoes', $dimensoes);
+    $stmt_produto_roupa->bindParam(':numero_modelo', $numero_modelo);
+    $stmt_produto_roupa->bindParam(':tipo_capuz', $tipo_capuz);
+    $stmt_produto_roupa->bindParam(':espessura_tecido', $espessura_tecido);
+    $stmt_produto_roupa->bindParam(':material_forro', $material_forro);
+    $stmt_produto_roupa->bindParam(':possui_ziper', $possui_ziper);
+    $stmt_produto_roupa->bindParam(':resistente_agua', $resistente_agua);
+    $stmt_produto_roupa->bindParam(':tipo_gola', $tipo_gola);
+    $stmt_produto_roupa->bindParam(':tipo_manga', $tipo_manga);
+    $stmt_produto_roupa->bindParam(':tecido', $tecido);
+    $stmt_produto_roupa->bindParam(':possui_bolsos', $possui_bolsos);
+    $stmt_produto_roupa->bindParam(':estampa_personalizada', $estampa_personalizada);
+    $stmt_produto_roupa->bindParam(':modelo', $modelo);
 
-            $sql_jogo_tabuleiro = "INSERT INTO jogo_tabuleiro 
-                                (id_produto, qtd_pecas, tamanho_tabuleiro, material_tabuleiro, tipo_tabuleiro, complexidade, possui_cartas)
-                                VALUES
-                                (:id_produto, :qtd_pecas, :tamanho_tabuleiro, :material_tabuleiro, :tipo_tabuleiro, :complexidade, :possui_cartas)";
-            
-            $stmt_jogo_tabuleiro = $conn->prepare($sql_jogo_tabuleiro);
-            $stmt_jogo_tabuleiro->bindParam(':id_produto', $id_produto);
-            $stmt_jogo_tabuleiro->bindParam(':qtd_pecas', $qtd_pecas);
-            $stmt_jogo_tabuleiro->bindParam(':tamanho_tabuleiro', $tamanho_tabuleiro);
-            $stmt_jogo_tabuleiro->bindParam(':material_tabuleiro', $material_tabuleiro);
-            $stmt_jogo_tabuleiro->bindParam(':tipo_tabuleiro', $tipo_tabuleiro);
-            $stmt_jogo_tabuleiro->bindParam(':complexidade', $complexidade);
-            $stmt_jogo_tabuleiro->bindParam(':possui_cartas', $possui_cartas);
+    // Executando a query
+    $stmt_produto_roupa->execute();
+}
 
-            $stmt_jogo_tabuleiro->execute();
-        }
-
-        if ($tipo_jogo == 'cartas') {
-            $tipo_baralho = $_POST['tipo_baralho'];
-            $tamanho_cartas = $_POST['tamanho_cartas'];
-            $material_cartas = $_POST['material_cartas'];
-            $tipo_jogo_cartas = $_POST['tipo_jogo_cartas'];
-            $numero_cartas = $_POST['numero_cartas'];
-            $ilustrado = isset($_POST['ilustrado']) ? 1 : 0;
-
-            $sql_jogo_cartas = "INSERT INTO jogo_cartas 
-                                (id_produto, tipo_baralho, tamanho_cartas, material_cartas, tipo_jogo, numero_cartas, ilustrado)
-                                VALUES
-                                (:id_produto, :tipo_baralho, :tamanho_cartas, :material_cartas, :tipo_jogo_cartas, :numero_cartas, :ilustrado)";
-            
-            $stmt_jogo_cartas = $conn->prepare($sql_jogo_cartas);
-            $stmt_jogo_cartas->bindParam(':id_produto', $id_produto);
-            $stmt_jogo_cartas->bindParam(':tipo_baralho', $tipo_baralho);
-            $stmt_jogo_cartas->bindParam(':tamanho_cartas', $tamanho_cartas);
-            $stmt_jogo_cartas->bindParam(':material_cartas', $material_cartas);
-            $stmt_jogo_cartas->bindParam(':tipo_jogo_cartas', $tipo_jogo_cartas);
-            $stmt_jogo_cartas->bindParam(':numero_cartas', $numero_cartas);
-            $stmt_jogo_cartas->bindParam(':ilustrado', $ilustrado);
-
-            $stmt_jogo_cartas->execute();
-        }
-    }
-
-    if ($categoria_produto == 'roupas') {       
-        $tamanho = $_POST['tamanho'];
-        $cor = $_POST['cor'];
-        $dimensoes = $_POST['dimensoes'];
-        $numero_modelo = $_POST['numero_modelo'];
-
-        $sql_produto_roupa = "INSERT INTO produto_roupa 
-                            (id_produto, tamanho, cor, dimensoes, numero_modelo) 
-                            VALUES 
-                            (:id_produto, :tamanho, :cor, :dimensoes, :numero_modelo)";
-        
-        $stmt_produto_roupa = $conn->prepare($sql_produto_roupa);
-        $stmt_produto_roupa->bindParam(':id_produto', $id_produto);
-        $stmt_produto_roupa->bindParam(':tamanho', $tamanho);
-        $stmt_produto_roupa->bindParam(':cor', $cor);
-        $stmt_produto_roupa->bindParam(':dimensoes', $dimensoes);
-        $stmt_produto_roupa->bindParam(':numero_modelo', $numero_modelo);
-
-        $stmt_produto_roupa->execute();
-    }
 
     echo "Produto inserido com sucesso!";
 

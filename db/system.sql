@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/04/2025 às 19:25
+-- Tempo de geração: 28/04/2025 às 04:23
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -24,21 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `camisa`
---
-
-CREATE TABLE `camisa` (
-  `id_produto` int(11) NOT NULL,
-  `tipo_gola` varchar(50) DEFAULT NULL,
-  `tipo_manga` varchar(50) DEFAULT NULL,
-  `tecido` varchar(50) DEFAULT NULL,
-  `possui_bolsos` tinyint(1) DEFAULT NULL,
-  `estampa_personalizada` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `categoria`
 --
 
@@ -52,7 +37,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id`, `nome`) VALUES
-(3, 'jogos');
+(3, 'jogos'),
+(4, 'roupas');
 
 -- --------------------------------------------------------
 
@@ -71,69 +57,6 @@ CREATE TABLE `endereco` (
   `rua` varchar(100) DEFAULT NULL,
   `numero` varchar(10) DEFAULT NULL,
   `complemento` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `jogo_cartas`
---
-
-CREATE TABLE `jogo_cartas` (
-  `id` int(11) NOT NULL,
-  `id_produto` int(11) NOT NULL,
-  `tipo_baralho` varchar(50) DEFAULT NULL,
-  `tamanho_cartas` varchar(20) DEFAULT NULL,
-  `material_cartas` varchar(50) DEFAULT NULL,
-  `tipo_jogo` varchar(50) DEFAULT NULL,
-  `numero_cartas` int(11) DEFAULT NULL,
-  `ilustrado` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `jogo_cartas`
---
-
-INSERT INTO `jogo_cartas` (`id`, `id_produto`, `tipo_baralho`, `tamanho_cartas`, `material_cartas`, `tipo_jogo`, `numero_cartas`, `ilustrado`) VALUES
-(1, 20, '432', '432', '432', '432', 431, 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `jogo_tabuleiro`
---
-
-CREATE TABLE `jogo_tabuleiro` (
-  `id` int(11) NOT NULL,
-  `id_produto` int(11) NOT NULL,
-  `qtd_pecas` int(11) DEFAULT NULL,
-  `tamanho_tabuleiro` varchar(50) DEFAULT NULL,
-  `material_tabuleiro` varchar(50) DEFAULT NULL,
-  `tipo_tabuleiro` varchar(50) DEFAULT NULL,
-  `complexidade` varchar(30) DEFAULT NULL,
-  `possui_cartas` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `jogo_tabuleiro`
---
-
-INSERT INTO `jogo_tabuleiro` (`id`, `id_produto`, `qtd_pecas`, `tamanho_tabuleiro`, `material_tabuleiro`, `tipo_tabuleiro`, `complexidade`, `possui_cartas`) VALUES
-(1, 21, 321, '321', '321', '21', '321', 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `moletom`
---
-
-CREATE TABLE `moletom` (
-  `id_produto` int(11) NOT NULL,
-  `tipo_capuz` tinyint(1) DEFAULT NULL,
-  `espessura_tecido` varchar(30) DEFAULT NULL,
-  `material_forro` varchar(50) DEFAULT NULL,
-  `possui_zíper` tinyint(1) DEFAULT NULL,
-  `resistente_agua` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -160,10 +83,8 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`id`, `nome`, `imagem`, `preco`, `desconto`, `unidades`, `descricao`, `fornecedor`, `transportadora`, `id_categoria`) VALUES
-(18, 'teste-categoria', '../../assets/images/products_db/Abada05.png', 123.00, NULL, 123, '123', '123', '112', 3),
-(19, 'categoria oae', '../../assets/images/products_db/Abada10.png', 123.00, NULL, 123, '123', '123', '123', 3),
-(20, 'VAIAGORAA', '../../assets/images/products_db/Abada11.png', 432.00, NULL, 432, '432', '432', '432', 3),
-(21, 'TESTETABULEIRO', '../../assets/images/products_db/Axé02.png', 321.00, NULL, 321, '321', '321', '321', 3);
+(31, 'TANJIRO', '../../assets/images/products_db/Axé01.png', 23.90, NULL, 321, 'nan', 'vans', 'correios', 4),
+(32, 'Império', '../../assets/images/products_db/Axé13.png', 401.99, NULL, 123, '123', 'imp', 'correios', 4);
 
 -- --------------------------------------------------------
 
@@ -178,18 +99,20 @@ CREATE TABLE `produto_jogo` (
   `genero` varchar(50) DEFAULT NULL,
   `qtd_pessoas` int(11) DEFAULT NULL,
   `classificacao_indicativa` varchar(10) DEFAULT NULL,
-  `duracao` varchar(50) DEFAULT NULL
+  `duracao` varchar(50) DEFAULT NULL,
+  `tipo_baralho` varchar(50) DEFAULT NULL,
+  `tamanho_cartas` varchar(20) DEFAULT NULL,
+  `material_cartas` varchar(50) DEFAULT NULL,
+  `tipo_jogo` varchar(50) DEFAULT NULL,
+  `numero_cartas` int(11) DEFAULT NULL,
+  `ilustrado` tinyint(1) DEFAULT NULL,
+  `qtd_pecas` int(11) DEFAULT NULL,
+  `tamanho_tabuleiro` varchar(50) DEFAULT NULL,
+  `material_tabuleiro` varchar(50) DEFAULT NULL,
+  `tipo_tabuleiro` varchar(50) DEFAULT NULL,
+  `complexidade` varchar(30) DEFAULT NULL,
+  `possui_cartas` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `produto_jogo`
---
-
-INSERT INTO `produto_jogo` (`id`, `id_produto`, `tema`, `genero`, `qtd_pessoas`, `classificacao_indicativa`, `duracao`) VALUES
-(9, 18, '123', '123', 123, '123', '123'),
-(10, 19, '321', '321', 12, '321', '123'),
-(11, 20, '432', '432', 432, '432', '432'),
-(12, 21, '321', '321', 321, '231', '321');
 
 -- --------------------------------------------------------
 
@@ -203,8 +126,27 @@ CREATE TABLE `produto_roupa` (
   `tamanho` varchar(10) DEFAULT NULL,
   `cor` varchar(30) DEFAULT NULL,
   `dimensoes` varchar(50) DEFAULT NULL,
-  `numero_modelo` varchar(50) DEFAULT NULL
+  `numero_modelo` varchar(50) DEFAULT NULL,
+  `tipo_capuz` tinyint(1) DEFAULT NULL,
+  `espessura_tecido` varchar(30) DEFAULT NULL,
+  `material_forro` varchar(50) DEFAULT NULL,
+  `possui_ziper` tinyint(1) DEFAULT NULL,
+  `resistente_agua` tinyint(1) DEFAULT NULL,
+  `tipo_gola` varchar(50) DEFAULT NULL,
+  `tipo_manga` varchar(50) DEFAULT NULL,
+  `tecido` varchar(50) DEFAULT NULL,
+  `possui_bolsos` tinyint(1) DEFAULT NULL,
+  `estampa_personalizada` tinyint(1) DEFAULT NULL,
+  `modelo` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `produto_roupa`
+--
+
+INSERT INTO `produto_roupa` (`id`, `id_produto`, `tamanho`, `cor`, `dimensoes`, `numero_modelo`, `tipo_capuz`, `espessura_tecido`, `material_forro`, `possui_ziper`, `resistente_agua`, `tipo_gola`, `tipo_manga`, `tecido`, `possui_bolsos`, `estampa_personalizada`, `modelo`) VALUES
+(7, 31, 'P', 'verde', '23', '43', 0, '', '', 0, 0, 'v', 'v', 'algodão', 1, 0, 'camisa'),
+(8, 32, 'P', 'Preto', '321', '2928', 1, 'Média', 'nan', 1, 0, '', '', '', 0, 0, 'moletom');
 
 -- --------------------------------------------------------
 
@@ -236,12 +178,6 @@ INSERT INTO `usuario` (`id`, `nome`, `numero_telefone`, `email`, `usuario`, `sen
 --
 
 --
--- Índices de tabela `camisa`
---
-ALTER TABLE `camisa`
-  ADD PRIMARY KEY (`id_produto`);
-
---
 -- Índices de tabela `categoria`
 --
 ALTER TABLE `categoria`
@@ -253,26 +189,6 @@ ALTER TABLE `categoria`
 ALTER TABLE `endereco`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_usuario` (`id_usuario`);
-
---
--- Índices de tabela `jogo_cartas`
---
-ALTER TABLE `jogo_cartas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_jogo_cartas_produto` (`id_produto`);
-
---
--- Índices de tabela `jogo_tabuleiro`
---
-ALTER TABLE `jogo_tabuleiro`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_jogo_tabuleiro_produto` (`id_produto`);
-
---
--- Índices de tabela `moletom`
---
-ALTER TABLE `moletom`
-  ADD PRIMARY KEY (`id_produto`);
 
 --
 -- Índices de tabela `produto`
@@ -311,7 +227,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
@@ -320,34 +236,22 @@ ALTER TABLE `endereco`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `jogo_cartas`
---
-ALTER TABLE `jogo_cartas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de tabela `jogo_tabuleiro`
---
-ALTER TABLE `jogo_tabuleiro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `produto_jogo`
 --
 ALTER TABLE `produto_jogo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `produto_roupa`
 --
 ALTER TABLE `produto_roupa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -360,34 +264,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- Restrições para tabelas `camisa`
---
-ALTER TABLE `camisa`
-  ADD CONSTRAINT `camisa_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
-
---
 -- Restrições para tabelas `endereco`
 --
 ALTER TABLE `endereco`
   ADD CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
-
---
--- Restrições para tabelas `jogo_cartas`
---
-ALTER TABLE `jogo_cartas`
-  ADD CONSTRAINT `fk_jogo_cartas_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Restrições para tabelas `jogo_tabuleiro`
---
-ALTER TABLE `jogo_tabuleiro`
-  ADD CONSTRAINT `fk_jogo_tabuleiro_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Restrições para tabelas `moletom`
---
-ALTER TABLE `moletom`
-  ADD CONSTRAINT `moletom_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`);
 
 --
 -- Restrições para tabelas `produto`
