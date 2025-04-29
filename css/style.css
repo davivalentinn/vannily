@@ -1121,9 +1121,72 @@ ul li .dropdown-item:hover {
     transition: all 0.2s var(--transition);
  }
 
+ .button-category-product{
+    background-color: #A61EA4;
+    border: 2px solid #A61EA4;
+    padding: 10px 45px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 515.8px;
+    margin: 10px auto;
+
+ }
+
+ .button-category-product:hover{
+    color: #A61EA4;
+    border: 2px solid #A61EA4;
+    background-color: transparent;
+ }
+
  
+/*CONTAINER SECTIONS*/
+.container-sections {
+    width: 100%;
+    height: 800px;
+    background-image: url("../assets/images/destaque-board-games/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000000e3;
+    
+}
 
+.container-sections-data {
+    background-color: #000000bb;
+    height: 100%;
+    margin: 0 auto;
+}
 
+.container-sections-infor{
+    padding-top: 50px;
+}
+
+.container-sections-infor h1{
+    color: white;
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container-sections-infor span {
+    color: #D93CD6;
+}
+
+.box-products-section{
+    background-color: #A61EA4;
+    height: 100px;
+}
+
+.box-products-section-1 {
+    
+}
 
 
 /*=========== responsividade =========*/

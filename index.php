@@ -88,7 +88,9 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
 
                         <div href="#" class="button-account-user">
                             <div class="dados-usuario-session">
-                                <p>Olá, <span><?= $_SESSION['usuario'] ?></span></p>
+                                <p>Olá, <span>
+                                        <?= $_SESSION['usuario'] ?>
+                                    </span></p>
                             </div>
 
                             <div class="circle-cep">
@@ -105,7 +107,9 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                                         <i class="ri-user-line"></i>
 
 
-                                        <h3>Bem vindo <span><?= $_SESSION['nome_completo_usuario'] ?></span></h3>
+                                        <h3>Bem vindo <span>
+                                                <?= $_SESSION['nome_completo_usuario'] ?>
+                                            </span></h3>
 
                                     </div>
                                     <hr>
@@ -1574,15 +1578,15 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
 
         <section class="category-products products-main">
             <div class="category-products-infor">
-            <h1>Categorias</h1>
-            
-            <div class="tabs-btns">
-                <span class="tab-btn active-tab" data-target="#board-games">Board Games</span>
-                <span class="tab-btn" data-target="#card-games">Card Games</span>
-                <span class="tab-btn" data-target="#moda-geek">Moda Geek</span>
-                <span class="tab-btn" data-target="#perifericos">Periféricos</span>
-            </div>
-            
+                <h1>Categorias</h1>
+
+                <div class="tabs-btns">
+                    <span class="tab-btn active-tab" data-target="#board-games">Board Games</span>
+                    <span class="tab-btn" data-target="#card-games">Card Games</span>
+                    <span class="tab-btn" data-target="#moda-geek">Moda Geek</span>
+                    <span class="tab-btn" data-target="#perifericos">Periféricos</span>
+                </div>
+
             </div>
             <hr>
 
@@ -3056,6 +3060,44 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                     </div>
                 </div>
             </div>
+
+            <a href="#" class="button-category-product">Ver mais produtos</a>
+        </section>
+
+        <section class="container-sections">
+
+            <div class="container-sections-data">
+                <div class="container-sections-infor">
+                    <h1><span>ModaGeek</span> da Vannily</h1>
+                </div>
+
+                <div class="products-main">
+                    <div class="d-flex justify-content-center align-items-center text-center">
+                        <div class="row">
+                            <div class="col-sm-6 box-products-section-1">Column 1</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-sm-4 box-products-section">Column 2</div>
+                            <div class="col-sm-4 box-products-section">Column 3</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-sm-8 box-products-section">Column 4</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            </div>
+            </div>
+
         </section>
 
     </main>
