@@ -1,7 +1,8 @@
 // Dados dos produtos
 const products_destaque_products = [
     {
-        title: "Ti",
+
+        title: "Ticket to Ride",
         description: "Ticket to Ride é uma aventura de trem rail através dos Estados Unidos e Canadá, onde alguns velhos amigos se reuniram para celebrar a aposta ousada e lucrativa de Fogg. A nova aposta onde é tudo ou nada, com objetivo de ver quem consegue viajar de trem pelo maior número de cidades nos EUA em apenas 7 dias.",
         price: "R$ 329,99",
         originalPrice: "R$ 399,99",
