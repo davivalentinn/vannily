@@ -237,11 +237,16 @@ li {
 .container-caixa-superior {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 5px;
     flex-wrap: wrap;
     border-bottom: 1px solid #e4e4e4;
     border-radius: 5px 5px 0 0;
+}
+
+.container-caixa-superior .icones-left{
+    display: flex;
 }
 
 .container-caixa-superior button {
@@ -255,6 +260,10 @@ li {
     cursor: pointer;
 }
 
+.container-caixa-inferior{
+    border-bottom: 1px solid #e4e4e4; 
+}
+
 .icones-classificacao{
     cursor: pointer;
     display: flex;
@@ -262,7 +271,6 @@ li {
     gap: 10px;
     padding: 5px;
     flex-wrap: wrap;
-    border-bottom: 1px solid #e4e4e4;
     border-radius: 5px 5px 0 0;
     margin-left: 30px;
 }
@@ -274,12 +282,10 @@ li {
     transition: .2s;
 }
 
-.container-campo-busca i{
-    
-    
-}
+
 .icones-classificacao .campo-busca{
     border-radius: 5px;
+    width: 30%;
     border: 1px solid #000000;
     padding: 4px 10px;
     font-size: 14px;
@@ -461,7 +467,7 @@ ul li .dropdown-item:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: 5px;
     margin-left: 30px;
 
 }
@@ -607,35 +613,7 @@ ul li .dropdown-item:hover {
   .container-contador-retirar{
     display: flex;
   }
-  .botao-retirar-produto{
-    background-color: white;
-    border-radius: 5px;
-    border: 2px solid #8B1689;
-    width: 35px;
-    height: 35px;
-    margin: 5px 0 0 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all .2s;
-  }
-  .botao-retirar-produto:hover{
-    background-color: #8B1689;
-  }
-
-  .botao-retirar-produto:hover i {
-    color: #ffffff;
-  }
-  .botao-retirar-produto i {
-    color: #333;
-    font-size: 20px;
-    color: #8B1689;
-  }
-  /* .botao-retirar-produto i:hover{
-    color: white;
-  } */
-
+  
   .descricao-produto{
     display: flex;
     margin: 5px 0 0 10px    ;
