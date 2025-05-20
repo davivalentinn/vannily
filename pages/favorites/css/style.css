@@ -260,11 +260,15 @@ li {
     cursor: pointer;
 }
 
+.add-caixa-superior{
+    
+}
+
 .container-caixa-inferior{
     border-bottom: 1px solid #e4e4e4; 
 }
 
-.icones-classificacao{
+.classification-icon{
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -275,7 +279,7 @@ li {
     margin-left: 30px;
 }
 
-.icones-classificacao i{
+.classification-icon i{
     cursor: pointer;
     color: #353535;
     font-size: 24px;
@@ -283,7 +287,7 @@ li {
 }
 
 
-.icones-classificacao .campo-busca{
+.classification-icon .campo-busca{
     border-radius: 5px;
     width: 30%;
     border: 1px solid #000000;
@@ -540,7 +544,7 @@ ul li .dropdown-item:hover {
 .titulo-produto{
     margin: 10px 0 5px 10px ;
     font-size: 15px;
-    width: 90%;
+    width: 100%;
     color: #353535;
     font-weight: 800;
     text-transform: uppercase;
@@ -616,7 +620,7 @@ ul li .dropdown-item:hover {
   
   .descricao-produto{
     display: flex;
-    margin: 5px 0 0 10px    ;
+    margin: 5px 0 0 10px;
   }
   .resultado-tamanho{
     margin: 0 5px 0 5px;
@@ -626,3 +630,36 @@ ul li .dropdown-item:hover {
     margin: 0 5px 0 5px;
     font-weight: 800;
   }
+
+.container-button{
+    width: 300px;
+    align-self: flex-end;
+    color: #8B1689;
+   
+}
+  
+.data-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-button .btn-heart {
+    margin: 14px;
+    font-size: 24px;
+}
+.caixa-produtos{
+    display: flex;
+
+}
+.btn-carrinho {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    padding: 6px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #8B1689;
+    background-color: #ffffff;
+    color: #8B1689;
+    transition: all 0.2s ease-in-out;
+}
