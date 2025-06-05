@@ -247,6 +247,10 @@ li {
 
 .container-caixa-superior .icones-left{
     display: flex;
+    align-items: center;
+}
+.container-caixa-superior .icones-right{
+    display: flex;
 }
 
 .container-caixa-superior button {
