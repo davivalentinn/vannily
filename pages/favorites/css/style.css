@@ -127,7 +127,11 @@ li {
     font-size: 14px;
 }
 
-
+.container-campo-pesquisa{
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
 
 .search-input {
     height: 40px;
@@ -265,6 +269,7 @@ li {
 }
 
 .add-caixa-superior{
+    margin-right: 30px;
     
 }
 
@@ -273,6 +278,7 @@ li {
 }
 
 .classification-icon{
+    justify-content: space-between;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -293,7 +299,7 @@ li {
 
 .classification-icon .campo-busca{
     border-radius: 5px;
-    width: 30%;
+    margin-left: 5px;
     border: 1px solid #000000;
     padding: 4px 10px;
     font-size: 14px;
