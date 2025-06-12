@@ -252,6 +252,11 @@ li {
 .container-caixa-superior .icones-left{
     display: flex;
     align-items: center;
+    
+}
+
+.classification-icon .icones-left i{
+    margin-left: 10px;
 }
 .container-caixa-superior .icones-right{
     display: flex;
@@ -266,6 +271,7 @@ li {
     border: 1px solid #000000;
     background-color: #ffffff;
     cursor: pointer;
+    margin-left: 5px;
 }
 
 .add-caixa-superior{
@@ -657,6 +663,7 @@ ul li .dropdown-item:hover {
 .data-button .btn-heart {
     margin: 14px;
     font-size: 24px;
+    cursor: pointer;
 }
 .caixa-produtos{
     display: flex;
@@ -672,4 +679,9 @@ ul li .dropdown-item:hover {
     background-color: #ffffff;
     color: #8B1689;
     transition: all 0.2s ease-in-out;
+}
+.btn-carrinho:hover{
+    background-color: #8B1689;
+    color: #ffffff;
+
 }
