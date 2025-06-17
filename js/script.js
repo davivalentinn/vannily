@@ -100,3 +100,37 @@ let subMenuUser = document.getElementById("subMenuUser");
 function toggleMenuUser() {
       subMenuUser.classList.toggle("open-menu");
 }
+
+
+ // Adiciona interatividade aos elementos
+ document.querySelectorAll('.model').forEach(model => {
+    model.addEventListener('click', function() {
+        this.style.transform = 'scale(1.2) rotate(360deg)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 600);
+    });
+});
+
+// Efeito de parallax suave nos elementos flutuantes
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelectorAll('.floating-v');
+    const speed = 0.5;
+
+    parallax.forEach(element => {
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+    });
+});
+
+// Adiciona efeito de brilho aos produtos
+document.querySelectorAll('.product-section').forEach(section => {
+    section.addEventListener('mouseenter', function() {
+        this.style.boxShadow = '0 25px 50px rgba(156, 39, 176, 0.4)';
+    });
+    
+    section.addEventListener('mouseleave', function() {
+        this.style.boxShadow = '';
+    });
+});

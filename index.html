@@ -86,57 +86,57 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                     <!-- Se tiver uma sessao de usuario, aparecera estas propriedades -->
                     <?php if (isset($_SESSION['id_usuario'])): ?>
 
-                        <div href="#" class="button-account-user">
-                            <div class="dados-usuario-session">
-                                <p>Olá, <span>
-                                        <?= $_SESSION['usuario'] ?>
-                                    </span></p>
-                            </div>
+                    <div href="#" class="button-account-user">
+                        <div class="dados-usuario-session">
+                            <p>Olá, <span>
+                                    <?= $_SESSION['usuario'] ?>
+                                </span></p>
+                        </div>
 
-                            <div class="circle-cep">
-                                <a href="#" class="header__action-btn">
+                        <div class="circle-cep">
+                            <a href="#" class="header__action-btn">
 
-                                    <i class="ri-user-3-line" onclick="toggleMenuUser()"></i>
-                                </a>
-                            </div>
+                                <i class="ri-user-3-line" onclick="toggleMenuUser()"></i>
+                            </a>
+                        </div>
 
-                            <div class="sub-menu-wrap" id="subMenuUser">
-                                <div class="sub-menu-user">
-                                    <div class="user-info">
+                        <div class="sub-menu-wrap" id="subMenuUser">
+                            <div class="sub-menu-user">
+                                <div class="user-info">
 
-                                        <i class="ri-user-line"></i>
+                                    <i class="ri-user-line"></i>
 
 
-                                        <h3>Bem vindo <span>
-                                                <?= $_SESSION['nome_completo_usuario'] ?>
-                                            </span></h3>
-
-                                    </div>
-                                    <hr>
-
-                                    <?php if (isset($_SESSION['email_usuario'])): ?>
-                                        <a href='pages/perfil/index.php' class='sub-menu-link'>
-                                            <i class='ri-user-settings-line'></i>
-                                            <p>Meu perfil</p>
-                                            <span><i class="ri-arrow-right-s-line"></i></span>
-                                        </a>
-                                    <?php endif; ?>
-
-                                    <?php
-                                    if (isset($_SESSION['email_usuario'])): ?>
-                                        <a href="backend/account/logout.php" class="sub-menu-link">
-                                            <i class="ri-logout-box-r-line" class="icone-logout"></i>
-                                            <p>Sair da Conta</p>
-                                            <span><i class="ri-arrow-right-s-line"></i></span>
-                                        </a>
-
-                                    <?php endif; ?>
+                                    <h3>Bem vindo <span>
+                                            <?= $_SESSION['nome_completo_usuario'] ?>
+                                        </span></h3>
 
                                 </div>
+                                <hr>
+
+                                <?php if (isset($_SESSION['email_usuario'])): ?>
+                                <a href='pages/perfil/index.php' class='sub-menu-link'>
+                                    <i class='ri-user-settings-line'></i>
+                                    <p>Meu perfil</p>
+                                    <span><i class="ri-arrow-right-s-line"></i></span>
+                                </a>
+                                <?php endif; ?>
+
+                                <?php
+                                    if (isset($_SESSION['email_usuario'])): ?>
+                                <a href="backend/account/logout.php" class="sub-menu-link">
+                                    <i class="ri-logout-box-r-line" class="icone-logout"></i>
+                                    <p>Sair da Conta</p>
+                                    <span><i class="ri-arrow-right-s-line"></i></span>
+                                </a>
+
+                                <?php endif; ?>
 
                             </div>
+
                         </div>
                     </div>
+                </div>
 
                 <?php endif; ?>
 
@@ -144,20 +144,20 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                 <!-- Senao tiver uma sessao de usuario, oculta estas propriedades -->
                 <?php
                 if (!isset($_SESSION['id_usuario'])): ?>
-                    <div class="button-account-user">
-                        <div>
-                            <a href="pages/account/register/index.php">Registrar</a> ou
-                            <a href="pages/account/login/index.php">Entrar</a>
-                        </div>
-
-                        <div class="circle-cep">
-                            <a href="#" class="">
-
-                                <i class="ri-user-3-line"></i>
-                            </a>
-                        </div>
-
+                <div class="button-account-user">
+                    <div>
+                        <a href="pages/account/register/index.php">Registrar</a> ou
+                        <a href="pages/account/login/index.php">Entrar</a>
                     </div>
+
+                    <div class="circle-cep">
+                        <a href="#" class="">
+
+                            <i class="ri-user-3-line"></i>
+                        </a>
+                    </div>
+
+                </div>
 
 
 
@@ -3066,37 +3066,73 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
 
         <section class="container-sections">
 
-            <div class="container-sections-data">
-                <div class="container-sections-infor">
-                    <h1><span>ModaGeek</span> da Vannily</h1>
-                </div>
+            <div class="container">
 
-                <div class="products-main">
-                    <div class="d-flex justify-content-center align-items-center text-center">
-                        <div class="row">
-                            <div class="col-sm-6 box-products-section-1">Column 1</div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="row">
-                            <div class="col-sm-4 box-products-section">Column 2</div>
-                            <div class="col-sm-4 box-products-section">Column 3</div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="row">
-                            <div class="col-sm-8 box-products-section">Column 4</div>
-                        </div>
-                    </div>
+                <div class="logo">
+                    <span class="moda">ModaGeek</span> <span class="vannily">da Vannily</span>
                 </div>
 
 
+                <div class="products-grid">
+                    <div class="product-section marvel-section">
+                        <div class="section-header">
+                            <div class="section-title">Filmes e séries</div>
+                        </div>
+                        <div class="category-title">Marvel</div>
+                        <div class="decorative-line"></div>
+                        <div class="models-container">
+                            <div class="model-group">
+                                <div class="model pulse">🕷️</div>
+                                <div class="model">👥</div>
+                                <div class="model pulse">🦸</div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="product-section">
+                        <div class="models-container">
+                            <div class="model-group">
+                                <div class="model">🔴</div>
+                                <div class="model pulse">⚫</div>
+                                <div class="model">🟡</div>
+                                <div class="model">🔵</div>
+                                <div class="model pulse">⚪</div>
+                                <div class="model">🟢</div>
+                                <div class="model">🟣</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="product-section harry-potter-section">
+                    <div class="category-title" style="text-align: center; margin-bottom: 30px;">Harry Potter</div>
+                    <div class="decorative-line"></div>
+                    <div class="models-container">
+                        <div class="model-group">
+                            <div class="model pulse">⚡</div>
+                            <div class="model">🏰</div>
+                            <div class="model pulse">🦉</div>
+                            <div class="model">🪄</div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="bottom-grid">
+                    <div class="product-item">
+                        <h3>Camisetas Exclusivas</h3>
+                        <p>Designs únicos e originais</p>
+                    </div>
+                    <div class="product-item">
+                        <h3>Qualidade Premium</h3>
+                        <p>Materiais de alta qualidade</p>
+                    </div>
+                    <div class="product-item">
+                        <h3>Entrega Rápida</h3>
+                        <p>Receba em casa rapidamente</p>
+                    </div>
+                </div>
             </div>
-            </div>
-            </div>
+
 
         </section>
 

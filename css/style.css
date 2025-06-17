@@ -1148,7 +1148,7 @@ ul li .dropdown-item:hover {
 /*CONTAINER SECTIONS*/
 .container-sections {
     width: 100%;
-    height: 800px;
+    height: 2000px;
     background-image: url("../assets/images/destaque-board-games/background.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -1157,35 +1157,256 @@ ul li .dropdown-item:hover {
     
 }
 
-.container-sections-data {
-    background-color: #000000bb;
-    height: 100%;
+
+.container {
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
 }
 
-.container-sections-infor{
-    padding-top: 50px;
-}
-
-.container-sections-infor h1{
-    color: white;
-    font-size: 40px;
-    font-weight: 800;
-    text-transform: uppercase;
+/* header {
     text-align: center;
+    padding: 60px 0 40px;
+    position: relative;
+} */
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.container-sections-infor span {
-    color: #D93CD6;
+.logo .moda {
+   color: #D93CD6;
+   margin: 0 10px;
 }
 
-.box-products-section{
-    background-color: #A61EA4;
-    height: 100px;
+.logo .vannily {
+    color: white;
 }
 
-.box-products-section-1 {
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-v {
+    position: absolute;
+    font-size: 4rem;
+    color: rgba(156, 39, 176, 0.1);
+    font-weight: bold;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-v:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.floating-v:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+.floating-v:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+.floating-v:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.product-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(156, 39, 176, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(156, 39, 176, 0.3);
+    border-color: rgba(156, 39, 176, 0.6);
+}
+
+.product-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(156, 39, 176, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.product-section:hover::before {
+    left: 100%;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    background: linear-gradient(45deg, #e91e63, #9c27b0);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+
+.category-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #fff;
+}
+
+.models-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    position: relative;
+}
+
+.model-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.model {
+    width: 120px;
+    height: 160px;
+    background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: rgba(156, 39, 176, 0.8);
+    border: 2px solid rgba(156, 39, 176, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.model:hover {
+    transform: scale(1.05);
+    border-color: rgba(156, 39, 176, 0.8);
+    box-shadow: 0 10px 25px rgba(156, 39, 176, 0.4);
+}
+
+.model::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(156, 39, 176, 0.1) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.model:hover::after {
+    opacity: 1;
+}
+
+.marvel-section {
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(255, 69, 0, 0.1));
+}
+
+.harry-potter-section {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(218, 165, 32, 0.1));
+}
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.product-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(156, 39, 176, 0.2);
+    transition: all 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(156, 39, 176, 0.5);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.decorative-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e91e63, #9c27b0, transparent);
+    margin: 40px 0;
+    border-radius: 2px;
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
     
+    .logo {
+        font-size: 2.5rem;
+    }
+    
+    .model-group {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .model {
+        width: 100px;
+        height: 130px;
+        font-size: 1.5rem;
+    }
+    
+    .category-title {
+        font-size: 2rem;
+    }
+    
+    .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 
