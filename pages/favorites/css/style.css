@@ -285,7 +285,6 @@ li {
 
 .classification-icon{
     justify-content: space-between;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -648,16 +647,19 @@ ul li .dropdown-item:hover {
   }
 
 .container-button{
-    width: 300px;
+    display: flex;
     align-self: flex-end;
     color: #8B1689;
-   
+    margin-right: 20px;
 }
   
 .data-button{
     display: flex;
     align-items: center;
-    justify-content: center;
+}
+
+.data-button button{
+    width: 210px;
 }
 
 .data-button .btn-heart {
@@ -667,7 +669,7 @@ ul li .dropdown-item:hover {
 }
 .caixa-produtos{
     display: flex;
-
+    justify-content: space-between;
 }
 .btn-carrinho {
     font-family: "Montserrat", sans-serif;
