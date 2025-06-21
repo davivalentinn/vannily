@@ -303,6 +303,7 @@ li {
 
 
 .classification-icon .campo-busca{
+    width: 300px;
     border-radius: 5px;
     margin-left: 5px;
     border: 1px solid #000000;
@@ -650,7 +651,7 @@ ul li .dropdown-item:hover {
     display: flex;
     align-self: flex-end;
     color: #8B1689;
-    margin-right: 20px;
+    margin-right: 10px;
 }
   
 .data-button{
