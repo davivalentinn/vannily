@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="https:/re/cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
     <title>Criar Conta - Vannily</title>
 </head>
 
@@ -63,7 +63,7 @@
                 </div>
                 <div class="icones-menu text-center">
                     <div class="favoritos-menu">
-                        <i class="ri-heart-add-line "></i>
+                        <a href="../../favorites/index.html"><i class="ri-heart-add-line "></i></a>
                     </div>
                     <div class="carrinho-menu">
                         <a href="../../carrinho/index.html"><i class="ri-shopping-cart-2-line"></i></a>
@@ -71,8 +71,8 @@
 
                     <div href="#" class="button-account-user">
                         <div class="">
-                            <a href="index.html">Registrar</a> ou
-                            <a href="../login/index.html">Entrar</a>
+                            <a href="index.php">Registrar</a> ou
+                            <a href="../login/index.php">Entrar</a>
                         </div>
                         <div class="circle-cep">
                             <i class="ri-user-3-line"></i>
