@@ -474,6 +474,12 @@ ul li .dropdown-item:hover {
     height: 8px;
 }
 
+.linha-divisao-produtos{
+    width: 100%;
+    background-color: #333;
+    height: 8%;
+}
+
 .caixa-geral{
     width: 100%;
 }
@@ -652,6 +658,7 @@ ul li .dropdown-item:hover {
     align-self: flex-end;
     color: #8B1689;
     margin-right: 10px;
+    
 }
   
 .data-button{
@@ -671,6 +678,7 @@ ul li .dropdown-item:hover {
 .caixa-produtos{
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #e4e4e4;
 }
 .btn-carrinho {
     font-family: "Montserrat", sans-serif;
@@ -699,19 +707,20 @@ ul li .dropdown-item:hover {
 .caixa-produtos.grid-view {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1%;
+    text-decoration: none;
   }
   
   .caixa-produtos.grid-view .produto {
-    width: calc(10% - 20px);
+    width: calc(24%);
     flex-direction: column;
     align-items: center;
     border: 1px solid #e4e4e4;
     border-radius: 5px;
     margin: 0;
-    padding: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
+
   
   /* Visualização em lista */
   .caixa-produtos.list-view {
@@ -726,3 +735,18 @@ ul li .dropdown-item:hover {
     width: 100%;
   }
   
+  /* Oculta informações quando em visualização compacta (grid) */
+.produto.compacto .selecionar-produto,
+.produto.compacto .titulo-produto,
+.produto.compacto .botao-estoque,
+.produto.compacto .valor-promocao,
+.produto.compacto .contador,
+.produto.compacto .descricao-produto {
+    display: none !important;
+}
+
+/* Reduz padding/margem se necessário */
+.produto.compacto {
+    padding: 10px 5px;
+    text-align: center;
+}
