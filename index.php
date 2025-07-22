@@ -768,7 +768,7 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                 </div>
 
                 <button class="slider-nav prev-btn"><i class="ri-arrow-left-line"></i></button>
-                <button class="slider-nav next-btn""><i class=" ri-arrow-right-line"></i></button>
+                <button class="slider-nav next-btn"><i class=" ri-arrow-right-line"></i></button>
             </div>
         </section>
         <section class="container-products products-main">

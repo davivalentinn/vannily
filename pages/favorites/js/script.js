@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const gridBtn = document.querySelector('.ri-grid-fill');
   const listBtn = document.querySelector('.ri-menu-line');
-  const caixaProdutos = document.querySelector('.caixa-produtos');
+  const caixaProdutos = document.querySelector('.display-grid');
   const produtos = document.querySelectorAll('.produto');
 
   gridBtn.addEventListener('click', () => {
