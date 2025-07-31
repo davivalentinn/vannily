@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagem_tmp = $_FILES['imagem']['tmp_name'];
         
         // Define o caminho para o diretório 'assets/images/livros/'
-        $imagem_destino = '../../../assets/images/livros/' . $imagem; // Altere o caminho conforme necessário
+        $imagem_destino = 'assets/images/products/' . $imagem; // Altere o caminho conforme necessário
 
         // Mova a imagem para o diretório especificado
         move_uploaded_file($imagem_tmp, $imagem_destino);

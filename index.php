@@ -1,17 +1,25 @@
 <?php
-
 session_start();
 
-$id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
-$usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : null;
-$email_usuario = isset($_SESSION['email_usuario']) ? $_SESSION['email_usuario'] : null;
-$nome_completo_usuario = isset($_SESSION['nome_completo_usuario']) ? $_SESSION['nome_completo_usuario'] : null;
-$numero_usuario = isset($_SESSION['numero_usuario']) ? $_SESSION['numero_usuario'] : null;
-$data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['data_criacao_usuario'] : null;
+// Conexão com o banco
+$host = "localhost";
+$dbname = "system";
+$user = "root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Erro na conexão: " . $conn->connect_error);
+}
+
+// Selecionar os produtos com maiores descontos
+$sql = "SELECT * FROM produto WHERE desconto IS NOT NULL AND desconto > 0 ORDER BY desconto DESC LIMIT 10";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> 
 
 <head>
     <meta charset="UTF-8">
@@ -373,51 +381,37 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                 <h1>Produtos em Promoção</h1>
             </div>
 
-            <div class="slider-container">
-                <div class="slider-pagination">
-                    <span class="current-page">01</span> - <span class="total-pages">02</span>
-                </div>
-                <div class="products-slider">
+           <div class="slider-container">
+    <div class="slider-pagination">
+        <span class="current-page">01</span> - <span class="total-pages">02</span>
+    </div>
+    <div class="products-slider">
+        <div class="slider-wrapper">
+            <div class="product-group">
+                <?php
+                if ($result && $result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $nome = $row['nome'];
+                        $imagem = $row['imagem'];
+                        $precoOriginal = $row['preco'];
+                        $desconto = $row['desconto'];
+                        $precoComDesconto = $precoOriginal - $desconto;
+                        $percentual = round(($desconto / $precoOriginal) * 100);
 
-                    <div class="slider-wrapper">
-                        <!-- Group 1 -->
-                        <div class="product-group">
+                        // Exibição de parcelas (12x sem juros por padrão)
+                        $parcelas = 12;
+                        $valorParcela = number_format($precoComDesconto / $parcelas, 2, ',', '.');
 
-                            <!-- Product 1 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/moletom-demon-slayer-unissex-anime-tajiro.png"
-                                        alt="Moletom Demon Slayer">
-                                </div>
-                                <h1 class="product-title">Moletom Demon Slayer - Unisex Anime Tanjiro</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 299,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 129,99</p>
+                        // Formatações
+                        $precoOriginalFormatado = number_format($precoOriginal, 2, ',', '.');
+                        $precoDescontoFormatado = number_format($precoComDesconto, 2, ',', '.');
+                ?>
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="<?= $imagem ?>" alt="<?= htmlspecialchars($nome) ?>">
 
-                                        <div><span class="discount-badge">-16%</span></div>
-                                    </div>
-                                    <div class="installment">12x de R$ 10,83 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Product 2 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/the-mind.png" alt="Moletom Demon Slayer">
-
+                                <?php if (str_contains(strtolower($nome), 'jogo') || str_contains(strtolower($nome), 'the mind')): ?>
+                                    <!-- Informações extras para jogos -->
                                     <div class="infor-jogos">
                                         <div class="info-1">
                                             <img src="assets/images/products/info-jogos/homem-idoso.png" alt="">
@@ -432,334 +426,40 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                                             <p>15min</p>
                                         </div>
                                     </div>
-                                </div>
-                                <h1 class="product-title">The Mind</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 229,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 299,99</p>
-
-                                        <div><span class="discount-badge">-26%</span></div>
-                                    </div>
-                                    <div class="installment">12x de R$ 9,83 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Product 3 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Headset-Gamer-RGB-Blackfire-FORTREK.png"
-                                        alt="Moletom Demon Slayer">
-                                </div>
-                                <h1 class="product-title">Headset Gamer RGB Blackfire FORTREK</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 119,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 99,99</p>
-
-                                        <div><span class="discount-badge">-16%</span></div>
-                                    </div>
-                                    <div class="installment">6x de R$ 21,45 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Product 4 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Camiseta-Gamer-Geek-Mario-Bros-Arcade.png"
-                                        alt="Moletom Demon Slayer">
-                                </div>
-                                <h1 class="product-title">Camiseta Gamer Geek - Mario Bros Arcade</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 149,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 119,99</p>
-
-                                        <div><span class="discount-badge">-22%</span></div>
-                                    </div>
-                                    <div class="installment">12x de R$ 10,83 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Product 5 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Cartas-Contra-a-Humanidade.png"
-                                        alt="Moletom Demon Slayer">
-
-                                    <div class="infor-jogos">
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/homem-idoso.png" alt="">
-                                            <p>+18</p>
-                                        </div>
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/grupo-criancas.png" alt="">
-                                            <p>3 a 5</p>
-                                        </div>
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/time.png" alt="">
-                                            <p>2h</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h1 class="product-title">Cartas Contra a Humanidade</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 299,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 129,99</p>
-
-                                        <div><span class="discount-badge">-16%</span></div>
-                                    </div>
-                                    <div class="installment">12x de R$ 10,83 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
+                                <?php endif; ?>
                             </div>
 
+                            <h1 class="product-title"><?= htmlspecialchars($nome) ?></h1>
 
+                            <div class="product-price">
+                                <div class="original-price">R$ <?= $precoOriginalFormatado ?></div>
+                                <div class="current-price">
+                                    <p>R$ <?= $precoDescontoFormatado ?></p>
+                                    <div><span class="discount-badge">-<?= $percentual ?>%</span></div>
+                                </div>
+                                <div class="installment"><?= $parcelas ?>x de R$ <?= $valorParcela ?> sem juros</div>
+                            </div>
+
+                            <div class="button-card">
+                                <div class="favoritos-products">
+                                    <a href="#"><i class="ri-heart-add-line"></i></a>
+                                </div>
+                                <div>
+                                    <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Group 2 -->
-                        <div class="product-group">
-                            <!-- Product 1 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Moletom-Anime-Geek-Tanjiro-Uniforme.png"
-                                        alt="Moletom Demon Slayer">
-                                </div>
-                                <h1 class="product-title">Moletom Anime Geek - Tanjiro Uniforme</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 299,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 259,99</p>
-
-                                        <div><span class="discount-badge">-11%</span></div>
-                                    </div>
-                                    <div class="installment">12x de R$ 8,23 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Product 2 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Camiseta-One-Piece-Ace-Camisa-Anime.png"
-                                        alt="Moletom Demon Slayer">
-                                </div>
-                                <h1 class="product-title">Camiseta One Piece Ace Camisa Anime</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 89,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 79,99</p>
-
-                                        <div><span class="discount-badge">-5%</span></div>
-                                    </div>
-                                    <div class="installment">22x de R$ 40,00 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Product 3 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Dobble.png" alt="Moletom Demon Slayer">
-
-                                    <div class="infor-jogos">
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/homem-idoso.png" alt="">
-                                            <p>+6</p>
-                                        </div>
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/grupo-criancas.png" alt="">
-                                            <p>2 a 8</p>
-                                        </div>
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/time.png" alt="">
-                                            <p>15min</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h1 class="product-title">Dobble</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 99,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 89,99</p>
-
-                                        <div><span class="discount-badge">-16%</span></div>
-                                    </div>
-                                    <div class="installment">12x de R$ 10,83 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Product 4 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Historias-Sinistras.png"
-                                        alt="Moletom Demon Slayer">
-
-                                    <div class="infor-jogos">
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/homem-idoso.png" alt="">
-                                            <p>+6</p>
-                                        </div>
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/grupo-criancas.png" alt="">
-                                            <p>2 a 8</p>
-                                        </div>
-                                        <div class="info-1">
-                                            <img src="assets/images/products/info-jogos/time.png" alt="">
-                                            <p>15min</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h1 class="product-title">Histórias Sinistras</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 79,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 49,99</p>
-
-                                        <div><span class="discount-badge">-16%</span></div>
-                                    </div>
-                                    <div class="installment">4x de R$ 12,50 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Product 5 -->
-                            <div class="product-card">
-                                <div class="product-image">
-                                    <img src="assets/images/products/Moletom-Anime-Geek-Sasuke-Uchiha.png"
-                                        alt="Moletom Demon Slayer">
-                                </div>
-                                <h1 class="product-title">Moletom Anime Geek - Sasuke Uchiha</h1>
-                                <div class="product-price">
-                                    <div class="original-price">R$ 169,99</div>
-                                    <div class="current-price">
-                                        <p>R$ 149,99</p>
-
-                                        <div><span class="discount-badge">-26%</span></div>
-                                    </div>
-                                    <div class="installment">3x de R$ 50,42 sem juros</div>
-
-                                </div>
-
-                                <div class="button-card">
-                                    <div class="favoritos-products">
-                                        <a href="#"> <i class="ri-heart-add-line"></i>
-                                        </a>
-                                    </div>
-
-                                    <div>
-                                        <a href="#" class="add-to-cart-products">Adicionar ao carrinho</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <button class="slider-nav prev-btn"><i class="ri-arrow-left-line"></i></button>
-                <button class="slider-nav next-btn"><i class=" ri-arrow-right-line"></i></button>
+                <?php
+                    }
+                } else {
+                    echo "<p>Nenhuma promoção disponível.</p>";
+                }
+                $conn->close();
+                ?>
             </div>
+        </div>
+    </div>
+</div>
         </section>
         <section class="container-products products-main">
             <div class="header-products">
