@@ -29,7 +29,7 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
         <nav class="container-fluid">
             <div class="d-flex gap-3 justify-content-center align-items-center">
                 <div class="">
-                    <a href="index.html" class="nav-logo-img col">
+                    <a href="." class="nav-logo-img col">
                         <img src="assets/images/logo/logo.svg" alt="">
                     </a>
                 </div>
@@ -74,69 +74,67 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                 </div>
                 <div class="icones-menu">
                     <div class="favoritos-menu">
-                        <a href="pages/favorites/index.html"><i class="ri-heart-add-line "></i></a>
+                        <a href='pages/favorites/index.html'><i class="ri-heart-add-line "></i></a>
                     </div>
                     <div class="carrinho-menu">
                         <a href="pages/carrinho/index.html"><i class="ri-shopping-cart-2-line"></i></a>
                     </div>
 
 
-
-
                     <!-- Se tiver uma sessao de usuario, aparecera estas propriedades -->
                     <?php if (isset($_SESSION['id_usuario'])): ?>
 
-                    <div href="#" class="button-account-user">
-                        <div class="dados-usuario-session">
-                            <p>Olá, <span>
-                                    <?= $_SESSION['usuario'] ?>
-                                </span></p>
-                        </div>
-
-                        <div class="circle-cep">
-                            <a href="#" class="header__action-btn">
-
-                                <i class="ri-user-3-line" onclick="toggleMenuUser()"></i>
-                            </a>
-                        </div>
-
-                        <div class="sub-menu-wrap" id="subMenuUser">
-                            <div class="sub-menu-user">
-                                <div class="user-info">
-
-                                    <i class="ri-user-line"></i>
-
-
-                                    <h3>Bem vindo <span>
-                                            <?= $_SESSION['nome_completo_usuario'] ?>
-                                        </span></h3>
-
-                                </div>
-                                <hr>
-
-                                <?php if (isset($_SESSION['email_usuario'])): ?>
-                                <a href='pages/account/profile/index.html' class='sub-menu-link'>
-                                    <i class='ri-user-settings-line'></i>
-                                    <p>Meu perfil</p>
-                                    <span><i class="ri-arrow-right-s-line"></i></span>
-                                </a>
-                                <?php endif; ?>
-
-                                <?php
-                                    if (isset($_SESSION['email_usuario'])): ?>
-                                <a href="backend/account/logout.php" class="sub-menu-link">
-                                    <i class="ri-logout-box-r-line" class="icone-logout"></i>
-                                    <p>Sair da Conta</p>
-                                    <span><i class="ri-arrow-right-s-line"></i></span>
-                                </a>
-
-                                <?php endif; ?>
-
+                        <div href="#" class="button-account-user">
+                            <div class="dados-usuario-session">
+                                <p>Olá, <span>
+                                        <?= $_SESSION['usuario'] ?>
+                                    </span></p>
                             </div>
 
+                            <div class="circle-cep">
+                                <a href="#" class="header__action-btn">
+
+                                    <i class="ri-user-3-line" onclick="toggleMenuUser()"></i>
+                                </a>
+                            </div>
+
+                            <div class="sub-menu-wrap" id="subMenuUser">
+                                <div class="sub-menu-user">
+                                    <div class="user-info">
+
+                                        <i class="ri-user-line"></i>
+
+
+                                        <h3>Bem vindo <span>
+                                                <?= $_SESSION['nome_completo_usuario'] ?>
+                                            </span></h3>
+
+                                    </div>
+                                    <hr>
+
+                                    <?php if (isset($_SESSION['email_usuario'])): ?>
+                                        <a href='pages/account/profile/index.html' class='sub-menu-link'>
+                                            <i class='ri-user-settings-line'></i>
+                                            <p>Meu perfil</p>
+                                            <span><i class="ri-arrow-right-s-line"></i></span>
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php
+                                    if (isset($_SESSION['email_usuario'])): ?>
+                                        <a href="backend/account/logout.php" class="sub-menu-link">
+                                            <i class="ri-logout-box-r-line" class="icone-logout"></i>
+                                            <p>Sair da Conta</p>
+                                            <span><i class="ri-arrow-right-s-line"></i></span>
+                                        </a>
+
+                                    <?php endif; ?>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 <?php endif; ?>
 
@@ -144,31 +142,23 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
                 <!-- Senao tiver uma sessao de usuario, oculta estas propriedades -->
                 <?php
                 if (!isset($_SESSION['id_usuario'])): ?>
-                <div class="button-account-user">
-                    <div>
-                        <a href="pages/account/register/index.php">Registrar</a> ou
-                        <a href="pages/account/login/index.php">Entrar</a>
+                    <div class="button-account-user">
+                        <div>
+                            <a href="pages/account/register/index.php">Registrar</a> ou
+                            <a href="pages/account/login/index.php">Entrar</a>
+                        </div>
+
+                        <div class="circle-cep">
+                            <a href="#" class="">
+
+                                <i class="ri-user-3-line"></i>
+                            </a>
+                        </div>
+
                     </div>
-
-                    <div class="circle-cep">
-                        <a href="#" class="">
-
-                            <i class="ri-user-3-line"></i>
-                        </a>
-                    </div>
-
-                </div>
-
-
 
                 <?php endif; ?>
             </div>
-
-
-
-
-
-
         </nav>
     </header>
 
@@ -3064,81 +3054,61 @@ $data_criacao_usuario = isset($_SESSION['data_criacao_usuario']) ? $_SESSION['da
             <a href="#" class="button-category-product">Ver mais produtos</a>
         </section>
 
-        <section class="container-sections">
-
-            <div class="container">
-
-                <div class="logo">
-                    <span class="moda">ModaGeek</span> <span class="vannily">da Vannily</span>
-                </div>
-
-
-                <div class="products-grid">
-                    <div class="product-section marvel-section">
-                        <div class="section-header">
-                            <div class="section-title">Filmes e séries</div>
-                        </div>
-                        <div class="category-title">Marvel</div>
-                        <div class="decorative-line"></div>
-                        <div class="models-container">
-                            <div class="model-group">
-                                <div class="model pulse">🕷️</div>
-                                <div class="model">👥</div>
-                                <div class="model pulse">🦸</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-section">
-                        <div class="models-container">
-                            <div class="model-group">
-                                <div class="model">🔴</div>
-                                <div class="model pulse">⚫</div>
-                                <div class="model">🟡</div>
-                                <div class="model">🔵</div>
-                                <div class="model pulse">⚪</div>
-                                <div class="model">🟢</div>
-                                <div class="model">🟣</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-section harry-potter-section">
-                    <div class="category-title" style="text-align: center; margin-bottom: 30px;">Harry Potter</div>
-                    <div class="decorative-line"></div>
-                    <div class="models-container">
-                        <div class="model-group">
-                            <div class="model pulse">⚡</div>
-                            <div class="model">🏰</div>
-                            <div class="model pulse">🦉</div>
-                            <div class="model">🪄</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bottom-grid">
-                    <div class="product-item">
-                        <h3>Camisetas Exclusivas</h3>
-                        <p>Designs únicos e originais</p>
-                    </div>
-                    <div class="product-item">
-                        <h3>Qualidade Premium</h3>
-                        <p>Materiais de alta qualidade</p>
-                    </div>
-                    <div class="product-item">
-                        <h3>Entrega Rápida</h3>
-                        <p>Receba em casa rapidamente</p>
-                    </div>
-                </div>
-            </div>
-
-
-        </section>
 
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Conheça-nós</h3>
+                <ul>
+                    <li><a href="#">Sobre-nós</a></li>
+                    <li><a href="#">Características</a></li>
+                    <li><a href="#">Notícias & Blog</a></li>
+                </ul>
+            </div>
 
+            <div class="footer-section">
+                <h3>Empresa</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">História</a></li>
+                    <li><a href="#">Depoimentos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><a href="#">Central de atendimento</a></li>
+                    <li><a href="#">Central de apoio</a></li>
+                    <li><a href="#">Contate-nos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Suporte</h3>
+                <ul>
+                    <li><a href="#">Política de privacidade</a></li>
+                    <li><a href="#">Termos & Serviços</a></li>
+                    <li><a href="#">Devoluções e pedidos</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                © Copyright Vannily. Todos os direitos reservados.
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                <a href="#" aria-label="Facebook"><i class="ri-facebook-line"></i></a>
+                <a href="#" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+                <a href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+            </div>
+
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
